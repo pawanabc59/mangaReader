@@ -14,4 +14,4 @@ app.use(express.static(__dirname + '/public'))
 app.use('/user', user)
 app.use('/manga', manga)
 
-app.listen(5656)
+app.listen(8080)
