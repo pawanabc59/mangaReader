@@ -3,9 +3,9 @@ var router = express.Router()
 var database = require('../controllers/database')
 var fs = require('fs')
 
-router.get('/get', function (req, res) {
+router.post('/get', function (req, res) {
   database.getMangas((err, mangas) => {
-    console.log(mangas)
+    console.log(err)
     if (err) {
       res.json({ success: 'false' })
     } else {
@@ -15,8 +15,8 @@ router.get('/get', function (req, res) {
 })
 
 router.post('/getChapters', function (req, res) {
-  database.getChaptersByMangaId(req.body.manga_id, (err, chapters) => {
-    console.log(chapters)
+  database.getChaptersByMangaId(req.body.manga_id, req.body.email_id, (err, chapters) => {
+    console.log(req.body.email_id)
     if (err) {
       res.json({ success: 'false' })
     } else {

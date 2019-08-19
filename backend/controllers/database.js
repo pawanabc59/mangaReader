@@ -63,10 +63,54 @@ function getMangas (cb) {
   })
 }
 
-function getChaptersByMangaId (manga_id, cb) {
+function getHomeFeed (email_id, cb) {
+  // hot_updates
+  var sql = 'SELECT manga.*,IF(fav.email_id IS NULL, "FALSE", "TRUE") as favourite\
+             FROM manga\
+             LEFT JOIN (SELECT *from favourites where email_id = "' + email_id + '")\
+             as fav\
+             ON manga.manga_id = fav.manga_id\
+             order by ratings desc'
+  conn.query(sql, function (err, hot_updates) {
+    // recommended
+    var sql = 'SELECT manga.*,IF(fav.email_id IS NULL, "FALSE", "TRUE") as favourite\
+              FROM manga\
+             LEFT JOIN (SELECT *from favourites where email_id = "' + email_id + '")\
+             as fav\
+             ON manga.manga_id = fav.manga_id\
+             order by title'
+    conn.query(sql, function (err, recommended) {
+      // popular
+      var sql = 'SELECT manga.*,IF(fav.email_id IS NULL, "FALSE", "TRUE") as favourite\
+             FROM manga\
+             LEFT JOIN (SELECT *from favourites where email_id = "' + email_id + '")\
+             as fav\
+             ON manga.manga_id = fav.manga_id\
+             order by ratings desc'
+      conn.query(sql, function (err, popular) {
+        // quick_reads
+        var sql = 'SELECT manga.*,IF(fav.email_id IS NULL, "FALSE", "TRUE") as favourite\
+             FROM manga\
+             LEFT JOIN (SELECT *from favourites where email_id = "' + email_id + '")\
+             as fav\
+             ON manga.manga_id = fav.manga_id\
+             order by number_of_chapters'
+        conn.query(sql, function (err, quick_reads) {
+          cb(err, hot_updates, recommended, popular, quick_reads)
+        })
+      })
+    })
+  })
+}
+
+function getChaptersByMangaId (manga_id, email_id, cb) {
   var sql = 'select *from chapters where manga_id = ' + manga_id + ' order by chapter_no'
   conn.query(sql, function (err, result) {
-    cb(err, result)
+    var values = [email_id, manga_id]
+    var sql = 'INSERT INTO `recent`(`email_id`, `manga_id`) VALUES (?)'
+    conn.query(sql, [values], function (err, updateRecent) {
+      cb(err, result)
+    })
   })
 }
 
@@ -77,4 +121,35 @@ function getChaptersByMangaIdDesending (manga_id, cb) {
   })
 }
 
-module.exports = { getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId }
+function addFavrourite (values, cb) {
+  var sql = 'INSERT INTO `favourites`(`email_id`, `manga_id`) VALUES(?)'
+  conn.query(sql, [values], function (err, result) {
+    cb(err, result)
+  })
+}
+
+function removeFavrourite (email_id, manga_id, cb) {
+  var sql = 'DELETE FROM `favourites` WHERE email_id = "' + email_id + '" and manga_id = "' + manga_id + ' "'
+  conn.query(sql, function (err, result) {
+    cb(err, result)
+  })
+}
+
+function getFavrourite (email_id, cb) {
+  var sql = 'SELECT * from favourites,manga where favourites.manga_id = manga.manga_id and favourites.email_id = "' + email_id + '"'
+  conn.query(sql, function (err, result) {
+    cb(err, result)
+  })
+}
+
+function getRecent (email_id, cb) {
+  var sql = 'SELECT * from recent,manga where recent.manga_id = manga.manga_id and recent.email_id = "' + email_id + '" order by at_time desc'
+  conn.query(sql, function (err, recent) {
+    cb(err, recent)
+  })
+}
+
+function addRecent (email_id, cb) {
+
+}
+module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite }

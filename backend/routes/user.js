@@ -37,6 +37,58 @@ router.post('/setProfilePic', (req, res) => {
   })
 })
 
+router.post('/favourite/add', (req, res) => {
+  var values = [req.body.email_id, req.body.manga_id]
+  database.addFavrourite(values, (err, result) => {
+    if (err) {
+      res.json({ success: 'false' })
+    } else {
+      res.json({ success: 'true' })
+    }
+  })
+})
+
+router.post('/favourite/remove', (req, res) => {
+  database.removeFavrourite(req.body.email_id, req.body.manga_id, (err, result) => {
+    if (err) {
+      res.json({ success: 'false' })
+    } else {
+      res.json({ success: 'true' })
+    }
+  })
+})
+
+router.post('/favourites', (req, res) => {
+  database.getFavrourite(req.body.email_id, (err, favourites) => {
+    if (err) {
+      res.json({ success: 'false' })
+    } else {
+      res.json({ success: 'true', favourites: favourites })
+    }
+  })
+})
+
+router.post('/home/feed', function (req, res) {
+  database.getHomeFeed(req.body.email_id, (err, hot_updates, recommended, popular, quick_reads) => {
+    console.log(req.body.email_id)
+    if (err) {
+      res.json({ success: 'false' })
+    } else {
+      res.json({ success: 'true', hot_updates: hot_updates, recommended: recommended, popular: popular, quick_reads: quick_reads })
+    }
+  })
+})
+
+router.post('/recent', (req, res) => {
+  database.getRecent(req.body.email_id, (err, recents) => {
+    if (err) {
+      res.json({ success: 'false' })
+    } else {
+      res.json({ success: 'true', recents: recents })
+    }
+  })
+})
+
 router.get('/index', function (req, res) {
   res.sendFile('', { root: './views' })
 })
