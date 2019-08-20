@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="277dp"-->
+        <!--android:layout_height="46dp"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginStart="82dp"-->
+        <!--android:layout_marginLeft="82dp"-->
+        <!--android:layout_marginTop="192dp"-->
+        <!--android:layout_marginEnd="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:text="Main Activity starts here"-->
+        <!--android:textSize="18dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--tools:ignore="MissingConstraints"-->
+        <!--tools:layout_editor_absoluteY="126dp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/goToSecond"-->
+        <!--android:layout_width="178dp"-->
+        <!--android:layout_height="49dp"-->
+        <!--android:layout_below="@+id/textView"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginStart="123dp"-->
+        <!--android:layout_marginLeft="123dp"-->
+        <!--android:layout_marginTop="77dp"-->
+        <!--android:layout_marginEnd="109dp"-->
+        <!--android:layout_marginRight="109dp"-->
+        <!--android:layout_marginBottom="674dp"-->
+        <!--android:text="@string/go_to_walkthrough"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.497"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@drawable/bottom_tab_colors"
+        app:itemTextColor="@drawable/bottom_tab_colors"
+
+        tools:ignore="MissingConstraints" />
+</RelativeLayout>

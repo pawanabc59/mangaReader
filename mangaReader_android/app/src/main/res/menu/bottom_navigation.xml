@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_discover"
+        android:icon="@drawable/ic_blur_circular"
+        android:title="DISCOVER"
+        />
+
+    <item
+        android:id="@+id/nav_favourite"
+        android:icon="@drawable/ic_favorite"
+        android:title="FAVOURITE"
+        />
+
+    <item
+        android:id="@+id/nav_recent"
+        android:icon="@drawable/ic_recent"
+        android:title="RECENT"
+        />
+
+    <item
+        android:id="@+id/nav_download"
+        android:icon="@drawable/ic_download"
+        android:title="MY DOCUMENTS"
+        />
+
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_account"
+        android:title="ACCOUNT"
+        />
+
+</menu>

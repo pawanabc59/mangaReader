@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragment"
+    android:id="@+id/profile_fragment">
+
+    <!--<Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/AppTheme"-->
+        <!--/>-->
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/profile_image_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="75dp"
+        android:background="@drawable/circle"
+        >
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="155dp"
+        android:layout_height="155dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circle"
+        android:scaleType="centerCrop"
+        />
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_image_cardview"
+        android:layout_centerHorizontal="true"
+        android:text="Edit Photo"
+        android:layout_marginTop="5dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/layout_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_below="@+id/btn_photo"
+        android:orientation="horizontal"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginTop="11dp"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="77dp"
+            android:layout_height="51dp"
+            android:src="@drawable/ic_email"
+            />
+
+        <TextView
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Email"
+            android:textSize="24sp"
+            android:layout_marginLeft="11dp"
+            />
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:weightSum="2"-->
+        <!--android:layout_below="@+id/layout_text"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginLeft="31dp"-->
+        <!--android:layout_marginRight="31dp"-->
+        <!--&gt;-->
+
+        <!--<ImageView-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="71dp"-->
+            <!--android:layout_height="51dp"-->
+            <!--android:src="@drawable/ic_password"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/edit_password"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:hint="Password"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginLeft="11dp"-->
+            <!--/>-->
+
+    <!--</LinearLayout>-->
+
+    <Button
+        android:id="@+id/btnabout_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:layout_below="@+id/layout_text"
+        />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="555dp"
+        android:text="LOGOUT"
+        />
+
+</RelativeLayout>
