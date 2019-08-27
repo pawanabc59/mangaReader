@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PDFViewer">
+
+    <android.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pdfToolbar"
+        tools:ignore="MissingConstraints"
+        android:background="@color/tab_indicator_gray"
+        android:titleTextColor="@color/intro_title_color">
+
+
+        <!--<RatingBar-->
+            <!--android:id="@+id/chapter_rating"-->
+            <!--android:layout_width="240dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:scaleX="0.5"-->
+            <!--android:scaleY="0.5"-->
+            <!--android:layout_marginLeft="110dp"-->
+            <!--android:progressTint="@color/lightPurple"-->
+            <!--android:numStars="5"-->
+            <!--android:stepSize="0.1"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/txtchapter_rating"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="15sp"-->
+            <!--android:layout_marginLeft="-80dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--/>-->
+
+
+    </android.widget.Toolbar>
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pdfview"
+        android:layout_marginTop="55dp"
+        >
+
+        <ProgressBar
+            android:id="@+id/pdf_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="270dp"
+            android:scaleX="3"
+            android:scaleY="3"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnrating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightPurple"
+            android:src="@drawable/ic_rate"
+            app:fabSize="normal"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="530dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/black"
+            android:padding="1dp"
+            >
+
+        <TextView
+            android:id="@+id/pdfPageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="page number"
+            android:textSize="14sp"
+            android:padding="1dp"
+            android:textColor="@color/white"
+            />
+
+        <TextClock
+            android:id="@+id/pdfTextclock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="hh:mm a"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:padding="1dp"
+            />
+
+        </LinearLayout>
+
+    </com.github.barteksc.pdfviewer.PDFView>
+
+</android.support.design.widget.CoordinatorLayout>

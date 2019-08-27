@@ -5,17 +5,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_signup_frag_style"
     tools:context=".LoginFragment"
-    android:paddingLeft="23dp">
+    android:paddingLeft="25dp">
 
     <!-- TODO: Update blank fragment layout -->
-
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="115dp"
         android:layout_marginTop="18dp"
+        android:layout_marginLeft="50dp"
         android:text="Login"
         android:textAlignment="center"
         android:textSize="36sp"
@@ -58,11 +57,12 @@
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="229dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="275dp"
         android:text="Login"
         android:background="@drawable/btn_gradient_style"
         />
+
 </FrameLayout>

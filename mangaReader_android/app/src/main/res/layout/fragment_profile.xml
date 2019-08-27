@@ -108,14 +108,17 @@
         android:layout_height="wrap_content"
         android:text="About Us"
         android:layout_below="@+id/layout_text"
+        android:layout_marginTop="25dp"
         />
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="555dp"
+        android:layout_centerHorizontal="true"
         android:text="LOGOUT"
+        android:background="@drawable/btn_gradient_style"
         />
 
 </RelativeLayout>

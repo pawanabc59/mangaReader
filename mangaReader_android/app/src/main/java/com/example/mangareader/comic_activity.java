@@ -35,7 +35,7 @@ import static com.example.mangareader.Constants.url_remove_favourites;
 public class comic_activity extends AppCompatActivity {
 
     private TextView tvtitle, tvcategory, tvrating;
-    private ImageView img;
+    private ImageView img, backgroundImage;
     private RatingBar comic_rating;
     private String manga_id;
     private FloatingActionButton btnFavourite, btnRemoveFavourite;
@@ -68,17 +68,20 @@ public class comic_activity extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.comicThumbnail);
         btnFavourite = findViewById(R.id.btnFavourite);
         btnRemoveFavourite = findViewById(R.id.btnRemoveFavourite);
+        backgroundImage = findViewById(R.id.backgroundImage);
 
         tvrating = findViewById(R.id.ratings);
         comic_rating = findViewById(R.id.comic_rating);
 
-        comic_rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
-
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                tvrating.setText("Rating : "+rating);
-            }
-        });
+        comic_rating.setRating((float) 4.5);
+        tvrating.setText("Rating : 4.5");
+//        comic_rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
+//
+//            @Override
+//            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+//                tvrating.setText("Rating : "+rating);
+//            }
+//        });
 
 
 //        comicNameToolbar = findViewById(R.id.comic_name_toolbar);
@@ -98,8 +101,11 @@ public class comic_activity extends AppCompatActivity {
 
 //        Setting values
         tvtitle.setText(Title);
-        tvdescription.setText("Description : \n"+Description);
+        tvdescription.setText(Description);
 //        img.setImageResource(image);
+
+        Picasso.get().load(image).resize(10,10).into(backgroundImage);
+
         Picasso.get().load(image).into(img);
 
         if (favourite.equals("TRUE")){

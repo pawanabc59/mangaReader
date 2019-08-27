@@ -108,7 +108,7 @@ public class LoginFragment extends Fragment {
                     }
 
                 } catch (JSONException e) {
-                    Toast.makeText(getContext(), "Login Failed : "+e, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Either username or password is wrong! Try again. ", Toast.LENGTH_SHORT).show();
                     Fragment fragment = new AccountFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

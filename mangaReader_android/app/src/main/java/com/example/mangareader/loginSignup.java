@@ -1,15 +1,15 @@
 package com.example.mangareader;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class loginSignup extends AppCompatActivity {
+
+//    Delete this file afterwards. No use of this file this file's content is similar to account fragment file since instead of activity we are using fragments.
 
     Button login, signup;
     Fragment fragment;

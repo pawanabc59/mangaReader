@@ -45,10 +45,10 @@ public class chapterAdapter extends RecyclerView.Adapter<chapterAdapter.ViewHold
         viewHolder.chapter_list_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "One Piece "+(i+1);
+//                String text = "One Piece "+(i+1);
                 String chapter_url = chapter_path;
                 Intent intent = new Intent(mContext, PDFViewer.class);
-                intent.putExtra("Chapter_Name", text);
+                intent.putExtra("Chapter_Name", mList.get(i).getChapter_name());
                 intent.putExtra("Chapter_path", chapter_url);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 mContext.startActivity(intent);

@@ -10,12 +10,10 @@
 
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/one_piece"
+        android:layout_height="200dp"
         android:fitsSystemWindows="true"
-        android:padding="15dp"
-
         >
 
         <!--<android.widget.Toolbar-->
@@ -25,6 +23,18 @@
             <!--android:background="@color/tab_indicator_gray"-->
             <!--android:titleTextColor="#000000"-->
             <!--/>-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/backgroundImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+
 
     <android.support.design.widget.CollapsingToolbarLayout
         android:layout_width="match_parent"
@@ -53,7 +63,7 @@
             <ImageView
                 android:id="@+id/comicThumbnail"
                 android:layout_width="105dp"
-                android:layout_height="131dp"
+                android:layout_height="145dp"
                 android:background="#2d2d2d"
                 android:scaleType="centerCrop"
                 android:layout_marginLeft="45dp"/>
@@ -99,14 +109,17 @@
                     android:scaleX="0.4"
                     android:scaleY="0.4"
                     android:layout_marginLeft="-73dp"
-                    android:progressTint="@color/intro_title_color"
+                    android:outlineAmbientShadowColor="@color/white"
+                    android:progressTint="@color/white"
                     />
 
                 <TextView
                     android:id="@+id/ratings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    />
 
             </LinearLayout>
             
@@ -115,6 +128,8 @@
     <!--</android.support.v4.widget.NestedScrollView>-->
 
     </android.support.design.widget.CollapsingToolbarLayout>
+
+        </FrameLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -131,15 +146,27 @@
             android:orientation="vertical"
             >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description : "
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="7dp"
+                />
+
         <com.ms.square.android.expandabletextview.ExpandableTextView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
             android:id="@+id/txtdescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="7dp"
             expandableTextView:maxCollapsedLines="3"
             expandableTextView:animDuration="200">
+
             <TextView
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
@@ -147,8 +174,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center"
-                android:textSize="16sp"
-                android:textColor="#000" />
+                android:textSize="14sp"
+                />
             <ImageButton
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
@@ -161,7 +188,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/chapter_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            >
 
         </android.support.v7.widget.RecyclerView>
 

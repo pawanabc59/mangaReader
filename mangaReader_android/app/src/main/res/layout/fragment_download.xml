@@ -32,6 +32,7 @@
         android:layout_marginTop="550dp"
         android:layout_marginLeft="280dp"
         app:fabSize="normal"
+        android:backgroundTint="@color/colorAccent"
         />
 
 
