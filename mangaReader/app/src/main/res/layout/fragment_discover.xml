@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/white_black">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/white_black">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/framelayout_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/white_black">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/image_slider_viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="11dp">
+
+                </android.support.v4.view.ViewPager>
+
+                <LinearLayout
+                    android:id="@+id/Sliderdots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"></LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/hot_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/framelayout_viewpager"
+                android:layout_marginLeft="11dp"
+                android:text="Hot Updates"
+                android:textColor="?attr/textcolor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerId_hot_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hot_update"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:background="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/recommended"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerId_hot_update"
+                android:layout_marginLeft="11dp"
+                android:text="Recommended Mangas"
+                android:textColor="?attr/textcolor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerId_recommended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recommended"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:background="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_popular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerId_recommended"
+                android:layout_marginLeft="11dp"
+                android:text="Popular Mangas"
+                android:textColor="?attr/textcolor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerId_popular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_popular"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:background="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/reading_now"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerId_popular"
+                android:layout_marginLeft="11dp"
+                android:text="Being Reading Right Now"
+                android:textColor="?attr/textcolor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerId_reading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reading_now"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:background="?attr/colorPrimary" />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

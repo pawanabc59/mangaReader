@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+<!--        <item android:id="@+id/nav_profile"-->
+<!--            android:icon="@drawable/ic_account"-->
+<!--            android:title="My profile"/>-->
+        <item android:id="@+id/nav_comics"
+            android:icon="@drawable/ic_happy"
+            android:title="Comics"/>
+        <item android:id="@+id/nav_books"
+            android:icon="@drawable/ic_book"
+            android:title="Books"/>
+        <item android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_setting"
+            android:title="Setting"/>
+        <item android:id="@+id/nav_night_mode"
+            android:icon="@drawable/ic_night"
+            android:title="Night Mode"
+            />
+        <item android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_about"
+            android:title="About Us"/>
+    </group>
+
+</menu>

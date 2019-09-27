@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/white_black"
+    tools:context=".BookActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/book_toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="?attr/colorPrimary"-->
+<!--            android:elevation="4dp"-->
+<!--            app:titleTextColor="?attr/textcolor" />-->
+
+        <FrameLayout
+            android:id="@+id/book_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/book_bottom_navigation"
+            android:layout_below="@+id/toolbar"
+            android:background="?attr/white_black" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/book_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="?attr/colorPrimary"
+            app:itemIconTint="@drawable/bottom_tab_colors"
+            app:itemTextColor="@drawable/bottom_tab_colors"
+            app:menu="@menu/book_bottom_navigation"
+
+            tools:ignore="MissingConstraints" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

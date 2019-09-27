@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="com.example.mangareader">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/luffy_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/luffy_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".SingleBookActivity"></activity>
+        <activity android:name=".BookActivity" />
+        <activity
+            android:name=".Splash_screen"
+            android:launchMode="standard"
+            android:theme="@style/SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DeveloperProfileActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".PDFViewer"
+            android:launchMode="standard" />
+        <activity
+            android:name=".comic_activity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".loginSignup"
+            android:launchMode="standard" />
+        <activity
+            android:name=".IntroActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="standard" />
+    </application>
+
+</manifest>
