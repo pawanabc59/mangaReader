@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2019 at 07:13 AM
+-- Generation Time: Oct 06, 2019 at 09:48 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -21,6 +21,52 @@ SET time_zone = "+00:00";
 --
 -- Database: `manga`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book`
+--
+
+CREATE TABLE `book` (
+  `book_id` int(100) NOT NULL,
+  `book_title` varchar(200) NOT NULL,
+  `rating` int(100) NOT NULL,
+  `ratings_count` int(100) NOT NULL,
+  `date_of_origin` date NOT NULL,
+  `book_cover_picture` varchar(100) NOT NULL,
+  `book_path` varchar(100) NOT NULL,
+  `book_description` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`book_id`, `book_title`, `rating`, `ratings_count`, `date_of_origin`, `book_cover_picture`, `book_path`, `book_description`) VALUES
+(1, 'Half Girlfriend', 4, 30, '2019-09-27', '/book_covers/half_girlfriend.jpg', '/books/Half_Girlfriend.pdf', 'Madhav Jha, a rural boy from Dumraon, a village in Bihar, comes to meet the author, who is actually Chetan Bhagat, and leaves behind a few journals from his half-girlfriend, who he believes has died. Chetan Bhagat calls him up the next morning to hear his story. He starts by describing his trouble entering St. Stephens, as his English wasn\'t good enough. Being a good basketball player, Madhav gets finally through sports quota.\r\n\r\nThe rich and beautiful Riya Somani is a girl from Delhi, who is also selected through the sports quota. Madhav and Riya become close \'friends\' due to their association with basketball. Madhav wants to make her his girlfriend, but she refuses. He demands that they get physical. Offended by his obscene ultimatum ({|Deti hai to de, warna katle}}), Riya parts company with him and tells him not to talk to her anymore.\r\n\r\nA year later, Riya marries her childhood friend Rohan and settles in London, where Rohan has a big business. Finding Delhi unbearable on grounds o'),
+(2, 'Sacred Games', 5, 50, '2019-09-27', '/book_covers/Sacred_games.jpg', '/books/Sacred_Games.pdf', 'Sacred Games runs mostly on two parallel tracks, one winding through the criminal underground of Mumbai (then Bombay) in the 80s and 90s and the other through a tense modern-day hunt for the explanation behind a notorious dead gangster\'s bizarre final words. The only Sikh police inspector in the city is seemingly invited to pursue Mumbai\'s most legendary crime lord, Ganesh Gaitonde. Gaitonde reveals a harrowing timeline and a few hints of the identity of his collaborators before taking his own life. From there, we explore the forces that shaped Gaitonde into the dark figure he became and follow the police inspector as he tries to put his own life in order, solve a crime, and possibly save his city. Through interweaving narratives and voices, Sacred Games takes on even larger themes, from the wrenching violence of the 1947 partition of India to the specter of nuclear terrorism.'),
+(3, 'The Girl with the Dragon Tattoo', 4, 0, '2019-09-27', '/book_covers/the_girl_with_the_dragon_tattoo.jpg', '/books/The_Girl_with_the_Dragon_Tattoo.pdf', 'In December 2002, Mikael Blomkvist, publisher of the Swedish political magazine Millennium, loses a libel case involving allegations about billionaire industrialist Hans-Erik Wennerström. Blomkvist is sentenced to three months (deferred) in prison, and ordered to pay hefty damages and costs. Soon afterwards, he is invited to meet Henrik Vanger, the retired CEO of the Vanger Corporation, unaware that Vanger has checked into his personal and professional history; the investigation of Blomkvist\'s circumstances has been carried out by Lisbeth Salander, a brilliant but deeply troubled researcher and computer hacker.'),
+(4, 'The Monk Who Sold His Ferrari', 4, 70, '2019-09-27', '/book_covers/the_monk_who_sold_his_ferrari.jpg', '/books/The_Monk_Who_Sold_His_Ferrari.pdf', 'In practical terms, Robin Sharma’s The Monk Who Sold His Ferrari is the story of Julian Mantle, a wildly successful attorney who suffers a massive heart attack in the courtroom due to his heavily unbalanced lifestyle.  Recovered, but facing a physical and spiritual crisis, Julian travels East in search of answers to easing the nagging sense that his life is somewhat lacking.  Several years later, upon his successful return, Julian shares his findings with another lawyer, destined for the same fate as he once experienced, to teach him the error of his ways.  That’s in practical terms.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_favourites`
+--
+
+CREATE TABLE `book_favourites` (
+  `email` varchar(100) NOT NULL,
+  `book_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book_favourites`
+--
+
+INSERT INTO `book_favourites` (`email`, `book_id`) VALUES
+('pawankm4587@gmail.com', 2),
+('pawankm4587@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -83,7 +129,8 @@ INSERT INTO `favourites` (`email_id`, `manga_id`) VALUES
 ('deepak@gmail.com', 1),
 ('deepak@gmail.com', 2),
 ('pawankm4587@gmail.com', 4),
-('pawankm4587@gmail.com', 3);
+('pawankm4587@gmail.com', 3),
+('nilesh.dbit@gmailcom', 2);
 
 -- --------------------------------------------------------
 
@@ -324,7 +371,64 @@ INSERT INTO `recent` (`email_id`, `manga_id`, `at_time`) VALUES
 ('pawankm4587@gmail.com', 3, '2019-09-27 10:08:28'),
 ('pawankm4587@gmail.com', 2, '2019-09-27 10:08:42'),
 ('pawankm4587@gmail.com', 1, '2019-09-27 10:11:41'),
-('pawankm4587@gmail.com', 1, '2019-09-27 10:13:43');
+('pawankm4587@gmail.com', 1, '2019-09-27 10:13:43'),
+(NULL, 2, '2019-09-27 11:53:19'),
+('pawankm4587@gmail.com', 1, '2019-09-27 17:40:20'),
+('pawankm4587@gmail.com', 1, '2019-09-27 17:41:00'),
+('pawankm4587@gmail.com', 2, '2019-09-27 17:41:11'),
+('pawankm4587@gmail.com', 2, '2019-09-27 17:41:27'),
+(NULL, 1, '2019-09-27 17:42:23'),
+(NULL, 2, '2019-09-27 17:42:30'),
+(NULL, 1, '2019-09-27 17:42:41'),
+(NULL, 1, '2019-09-27 17:43:34'),
+(NULL, 1, '2019-09-27 17:43:38'),
+('pawankm4587@gmail.com', 2, '2019-09-27 17:45:01'),
+('pawankm4587@gmail.com', 1, '2019-09-30 12:36:00'),
+('pawankm4587@gmail.com', 2, '2019-09-30 12:40:54'),
+(NULL, 3, '2019-09-30 14:17:03'),
+('pawankm4587@gmail.com', 1, '2019-09-30 16:06:43'),
+('pawankm4587@gmail.com', 1, '2019-09-30 16:07:44'),
+('pawankm4587@gmail.com', 2, '2019-09-30 16:07:57'),
+('pawankm4587@gmail.com', 5, '2019-09-30 16:07:59'),
+('pawankm4587@gmail.com', 5, '2019-09-30 16:08:18'),
+('pawankm4587@gmail.com', 3, '2019-09-30 16:38:29'),
+('pawankm4587@gmail.com', 3, '2019-10-01 09:16:49'),
+(NULL, 1, '2019-10-01 09:19:35'),
+('pawankm4587@gmail.com', 1, '2019-10-01 09:20:26'),
+('akash@gmail.com', 1, '2019-10-01 09:20:37'),
+('akash@gmail.com', 5, '2019-10-01 09:20:41'),
+('akash@gmail.com', 5, '2019-10-01 09:20:50'),
+('akash@gmail.com', 5, '2019-10-01 09:32:19'),
+('akash@gmail.com', 5, '2019-10-01 09:33:06'),
+('akash@gmail.com', 5, '2019-10-01 09:33:14'),
+('akash@gmail.com', 5, '2019-10-01 09:33:22'),
+('akash@gmail.com', 5, '2019-10-01 09:33:29'),
+('akash@gmail.com', 1, '2019-10-01 09:33:36'),
+('pawankm4587@gmail.com', 5, '2019-10-01 09:34:03'),
+('pawankm4587@gmail.com', 2, '2019-10-01 09:34:12'),
+('akash@gmail.com', 2, '2019-10-01 09:34:23'),
+('akash@gmail.com', 2, '2019-10-01 09:34:26'),
+('akash@gmail.com', 2, '2019-10-01 09:34:42'),
+('akash@gmail.com', 2, '2019-10-01 09:34:51'),
+('akash@gmail.com', 2, '2019-10-01 09:34:55'),
+('akash@gmail.com', 5, '2019-10-01 09:35:25'),
+('akash@gmail.com', 1, '2019-10-01 09:35:28'),
+(NULL, 2, '2019-10-01 09:45:32'),
+(NULL, 1, '2019-10-01 09:45:47'),
+(NULL, 1, '2019-10-01 10:06:23'),
+(NULL, 2, '2019-10-01 10:18:55'),
+('nilesh.dbit@gmailcom', 1, '2019-10-01 10:22:24'),
+('nilesh.dbit@gmailcom', 3, '2019-10-01 10:23:28'),
+('nilesh.dbit@gmailcom', 2, '2019-10-01 10:24:26'),
+('nilesh.dbit@gmailcom', 2, '2019-10-01 10:24:32'),
+('nilesh.dbit@gmailcom', 1, '2019-10-01 10:24:37'),
+('nilesh.dbit@gmailcom', 2, '2019-10-01 10:27:38'),
+('pawankm4587@gmail.com', 1, '2019-10-01 20:50:43'),
+('pawankm4587@gmail.com', 1, '2019-10-02 21:39:22'),
+('pawankm4587@gmail.com', 1, '2019-10-02 21:39:24'),
+('pawankm4587@gmail.com', 2, '2019-10-02 21:39:34'),
+('pawankm4587@gmail.com', 2, '2019-10-02 21:39:41'),
+('pawankm4587@gmail.com', 2, '2019-10-02 21:39:45');
 
 -- --------------------------------------------------------
 
@@ -345,11 +449,19 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `email_id`, `password`, `profile_picture`) VALUES
 (2, 'pawankm4587@gmail.com', '123', '/profile/pawankm4587@gmail.com.jpeg'),
-(3, 'deepak@gmail.com', '123', NULL);
+(3, 'deepak@gmail.com', '123', '/profile/deepak@gmail.com/deepak@gmail.com.jpeg'),
+(4, 'akash@gmail.com', 'akash', NULL),
+(5, 'nilesh.dbit@gmailcom', '123', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`book_id`);
 
 --
 -- Indexes for table `chapters`
@@ -390,6 +502,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `book`
+--
+ALTER TABLE `book`
+  MODIFY `book_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `chapters`
 --
 ALTER TABLE `chapters`
@@ -405,7 +523,7 @@ ALTER TABLE `manga`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
