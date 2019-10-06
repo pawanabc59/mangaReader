@@ -14,11 +14,22 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.example.mangareader.Constants.url_add_favourite_book;
+import static com.example.mangareader.Constants.url_add_favourites;
+import static com.example.mangareader.Constants.url_remove_favourite_book;
+import static com.example.mangareader.Constants.url_remove_favourites;
 
 public class SingleBookActivity extends AppCompatActivity {
 
@@ -82,8 +93,9 @@ public class SingleBookActivity extends AppCompatActivity {
         final String Title =  intent.getExtras().getString("Title");
         String Description = intent.getExtras().getString("Description");
         String image = intent.getExtras().getString("Thumbnail");
-        String Manga_id = intent.getExtras().getString("Manga_id");
+        final String book_id = intent.getExtras().getString("book_id");
         String favourite = intent.getExtras().getString("favourite");
+        final String book_path = intent.getExtras().getString("book_path");
 
 //        System.out.println("Comic Activity : "+favourite);
 
@@ -114,20 +126,20 @@ public class SingleBookActivity extends AppCompatActivity {
             book_btnFavourite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), "Floating Button is clicked", Toast.LENGTH_SHORT).show();
-//                    addFavourite(mEmail, manga_id);
+                Toast.makeText(getApplicationContext(), "Floating Button is clicked", Toast.LENGTH_SHORT).show();
+                    addFavouriteBook(mEmail, book_id);
                 }
             });
         }
         else{
             book_btnFavourite.setEnabled(false);
-            Toast.makeText(getApplicationContext(), "You need to login to add the mangas to your favorite list", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "You need to login to add the books to your favorite list", Toast.LENGTH_LONG).show();
         }
 
         book_btnRemoveFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                removeFavourite(mEmail, manga_id);
+                removeFavouriteBook(mEmail, book_id);
             }
         });
 
@@ -136,11 +148,92 @@ public class SingleBookActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(getApplicationContext(), PDFViewer.class);
                 intent1.putExtra("Chapter_Name", Title);
-                intent1.putExtra("Chapter_path", "/chapters/one_piece_1.pdf");
+                intent1.putExtra("Chapter_path", book_path);
                 startActivity(intent1);
             }
         });
 
+    }
+
+    private void addFavouriteBook(String mEmail, String book_id){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        final JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("email_id", mEmail);
+            jsonObject.put("book_id", book_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_add_favourite_book, new ConnectionManager.VolleyCallback() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    String success = jsonObject1.getString("success");
+
+                    if (success.equals("true")){
+                        book_btnFavourite.setVisibility(View.GONE);
+                        book_btnRemoveFavourite.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(),"Added to favourites", Toast.LENGTH_SHORT).show();
+//                        recreate();
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new discoverFragment()).commit();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(),"Some Error has Come : " + error, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
+
+    private void removeFavouriteBook(String mEmail, String book_id){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        final JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email_id", mEmail);
+            jsonObject.put("book_id", book_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_remove_favourite_book, new ConnectionManager.VolleyCallback() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+
+                    String success = jsonObject1.getString("success");
+                    if (success.equals("true")){
+                        book_btnRemoveFavourite.setVisibility(View.GONE);
+                        book_btnFavourite.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(),"Removed from favourites", Toast.LENGTH_SHORT).show();
+//                        recreate();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"Some Error has Come : " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }

@@ -4,8 +4,9 @@ var bodyParser = require('body-parser')
 // routes
 var user = require('./routes/user.js')
 var manga = require('./routes/manga.js')
+var books = require('./routes/book.js')
 
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 
 app.use(express.static(__dirname + '/public'))
@@ -13,5 +14,6 @@ app.use(express.static(__dirname + '/public'))
 
 app.use('/user', user)
 app.use('/manga', manga)
+app.use('/books', books)
 
 app.listen(5656)

@@ -48,7 +48,7 @@ public class BookActivity extends AppCompatActivity {
                             selectedFragment = new BookListFragment();
                             break;
                         case R.id.book_nav_favourite:
-                            selectedFragment = new favouriteFragment();
+                            selectedFragment = new FavouriteBookFragment();
                             break;
 
                     }

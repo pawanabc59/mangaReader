@@ -11,20 +11,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import static com.example.mangareader.Constants.main_path;
+import static com.example.mangareader.Constants.url_get_book;
 
 public class BookListFragment extends Fragment {
 
     SessionManager sessionManager;
     Context contextThemeWrapper;
     String static_url = main_path;
-    List<comic> lstBooks;
+    List<BookModel> lstBooks;
     RecyclerView myrecyclerview;
+    String email = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,29 +60,83 @@ public class BookListFragment extends Fragment {
         toolbar.setTitle("All Books");
 
         HashMap<String, String> user = sessionManager.getUserDetails();
-        String email = user.get(sessionManager.EMAIL);
+        email = user.get(sessionManager.EMAIL);
         String profile_photo_link = user.get(sessionManager.PROFILE_PHOTO);
 
         lstBooks = new ArrayList<>();
 
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
-        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
+//        lstBooks.add(new comic("One", "Fun", "Fun and adventure", main_path+"/covers/onepiece.jpeg", "1", "TRUE"));
 
-
-        myrecyclerview = view.findViewById(R.id.book_list_recyclerview);
-        BookAdapter myAdapter = new BookAdapter(getContext(), lstBooks);
-        GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-        myrecyclerview.setLayoutManager(manager);
-        myrecyclerview.setAdapter(myAdapter);
+        getBooks();
 
         return view;
+    }
+
+    private void getBooks(){
+        JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("email_id",email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_get_book, new ConnectionManager.VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    String success = jsonObject1.getString("success");
+
+                    JSONArray jsonArray = jsonObject1.getJSONArray("books");
+
+                    if (success.equals("true")){
+                        Toast.makeText(getContext(),"All Books", Toast.LENGTH_SHORT).show();
+
+                        for (int i = 0 ; i < jsonArray.length(); i++){
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                            String title = jsonObject2.getString("book_title");
+                            String cover_photo = jsonObject2.getString("book_cover_picture");
+                            String description = jsonObject2.getString("book_description");
+                            String manga_id = jsonObject2.getString("book_id");
+                            String book_path = jsonObject2.getString("book_path");
+                            String favourite = "FALSE";
+
+                            String thumbnail = main_path+cover_photo;
+
+                            lstBooks.add(new BookModel(title, "Fun", description, thumbnail, manga_id, favourite, book_path));
+
+                            myrecyclerview = getActivity().findViewById(R.id.book_list_recyclerview);
+                            BookAdapter myAdapter = new BookAdapter(getContext(), lstBooks);
+                            GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+                            myrecyclerview.setLayoutManager(manager);
+                            myrecyclerview.setAdapter(myAdapter);
+
+                        }
+
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Books not Found : " + e, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Books Loading Error : "+error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

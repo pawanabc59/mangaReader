@@ -14,8 +14,8 @@ function newUser (values, cb) {
   })
 }
 
-function setProfilePic (url, cb) {
-  var sql = 'UPDATE `users` SET `profile_picture` = "' + url + '"'
+function setProfilePic (url,email_id, cb) {
+  var sql = 'UPDATE `users` SET `profile_picture`="'+url+'" WHERE email_id = "'+email_id+'"' 
   conn.query(sql, function (err, result) {
     cb(result)
   })
@@ -57,7 +57,14 @@ function getMangasByOriginDate (values, cb) {
 }
 
 function getMangas (cb) {
-  var sql = 'select *from manga order by title'
+  var sql = 'select * from manga order by title'
+  conn.query(sql, function (err, result) {
+    cb(err, result)
+  })
+}
+
+function getBooks (cb) {
+  var sql = 'select * from book order by book_title'
   conn.query(sql, function (err, result) {
     cb(err, result)
   })
@@ -142,8 +149,29 @@ function getFavrourite (email_id, cb) {
   })
 }
 
+function addFavouriteBook (values, cb) {
+  var sql = 'INSERT INTO `book_favourites`(`email`, `book_id`) VALUES(?)'
+  conn.query(sql, [values], function (err, result) {
+    cb(err, result)
+  })
+}
+
+function removeFavouriteBook (email_id, book_id, cb) {
+  var sql = 'DELETE FROM `book_favourites` WHERE email = "' + email_id + '" and book_id = "' + book_id + ' "'
+  conn.query(sql, function (err, result) {
+    cb(err, result)
+  })
+}
+
+function getFavouriteBook (email_id, cb) {
+  var sql = 'SELECT * from book_favourites,book where book_favourites.book_id = book.book_id and book_favourites.email = "' + email_id + '"'
+  conn.query(sql, function (err, result) {
+    cb(err, result)
+  })
+}
+
 function getRecent (email_id, cb) {
-  var sql = 'SELECT * from recent,manga where recent.manga_id = manga.manga_id and recent.email_id = "' + email_id + '" order by at_time desc'
+  var sql = 'SELECT DISTINCT  * from recent,manga where recent.manga_id = manga.manga_id and recent.email_id = "' + email_id + '" order by at_time desc'
   conn.query(sql, function (err, recent) {
     cb(err, recent)
   })
@@ -152,4 +180,4 @@ function getRecent (email_id, cb) {
 function addRecent (email_id, cb) {
 
 }
-module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite }
+module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite, getBooks, addFavouriteBook, removeFavouriteBook, getFavouriteBook }

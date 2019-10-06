@@ -47,6 +47,8 @@ public class PDFViewer extends AppCompatActivity {
         String chapter_name =  intent.getExtras().getString("Chapter_Name");
         String chapter_path = intent.getExtras().getString("Chapter_path");
 
+        System.out.println("book path is : " +chapter_path);
+
         pdfView = (PDFView) findViewById(R.id.pdfview);
         toolbar = (Toolbar) findViewById(R.id.pdfToolbar);
         pdf_loading = findViewById(R.id.pdf_loading);

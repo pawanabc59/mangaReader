@@ -20,9 +20,9 @@ import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> {
     private Context mContext;
-    private List<comic> mData;
+    private List<BookModel> mData;
 
-    public BookAdapter(Context mContext, List<comic> mData) {
+    public BookAdapter(Context mContext, List<BookModel> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -68,8 +68,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
                 intent.putExtra("Title", mData.get(i).getTitle());
                 intent.putExtra("Description", mData.get(i).getDescription());
                 intent.putExtra("Thumbnail", mData.get(i).getThumbnail());
-                intent.putExtra("Manga_id", mData.get(i).getManga_id());
+                intent.putExtra("book_id", mData.get(i).getBook_id());
                 intent.putExtra("favourite", mData.get(i).getFavourite());
+                intent.putExtra("book_path", mData.get(i).getBook_path());
 
 
 //                start the activity
