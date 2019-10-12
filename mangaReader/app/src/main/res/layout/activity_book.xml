@@ -25,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/book_bottom_navigation"
-            android:layout_below="@+id/toolbar"
             android:background="?attr/white_black" />
 
         <android.support.design.widget.BottomNavigationView
