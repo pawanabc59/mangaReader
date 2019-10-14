@@ -9,28 +9,28 @@
 
     <Button
         android:id="@+id/frag_btn_login"
-        android:layout_width="137dp"
-        android:layout_height="62dp"
+        android:layout_width="@dimen/_137sdp"
+        android:layout_height="@dimen/_62sdp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-22dp"
         android:layout_marginLeft="-16dp"
-        android:layout_marginBottom="368dp"
+        android:layout_marginBottom="@dimen/_368sdp"
         android:text="Login"
         android:background="@drawable/btn_gradient_style2"
         />
 
     <Button
         android:id="@+id/frag_btn_signup"
-        android:layout_width="137dp"
-        android:layout_height="62dp"
+        android:layout_width="@dimen/_137sdp"
+        android:layout_height="@dimen/_62sdp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-22dp"
         android:layout_marginLeft="-16dp"
-        android:layout_marginBottom="281dp"
+        android:layout_marginBottom="@dimen/_281sdp"
         android:background="@drawable/btn_gradient_style2"
         android:text="Sign Up" />
 

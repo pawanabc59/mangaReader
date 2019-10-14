@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="5"
-        android:padding="11dp"
+        android:padding="@dimen/_11sdp"
         android:background="?attr/colorPrimary"
         >
 
         <ImageView
             android:id="@+id/comic_image"
-            android:layout_width="85dp"
-            android:layout_height="114dp"
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="@dimen/_114sdp"
             android:scaleType="centerCrop"
             android:layout_weight="0.1"
             />
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="4.9"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="@dimen/_11sdp"
             android:background="?attr/colorPrimary"
             >
 
@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/comic_category"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
+                android:layout_height="@dimen/_80sdp"
                 android:text="Category"
                 android:textSize="14sp"
                 android:textColor="?attr/textcolor"

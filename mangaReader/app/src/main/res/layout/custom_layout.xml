@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="@dimen/_210sdp"
         tools:srcCompat="@tools:sample/avatars"
         android:scaleType="centerCrop"
         android:fitsSystemWindows="true"

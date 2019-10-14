@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_signup_frag_style"
     tools:context=".SignupFragment"
-    android:paddingLeft="23dp"
+    android:paddingLeft="@dimen/_23sdp"
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,18 +15,18 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="@dimen/_50sdp"
         android:text="Sign Up"
         android:textColor="@color/colorPrimary"
         android:textSize="36sp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/_18sdp"
         />
 
     <EditText
         android:id="@+id/sign_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="@dimen/_111sdp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
@@ -39,7 +39,7 @@
         android:id="@+id/sign_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="@dimen/_184sdp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -51,7 +51,7 @@
         android:id="@+id/sign_confirm_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="259dp"
+        android:layout_marginTop="@dimen/_259sdp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
@@ -62,17 +62,17 @@
 
     <ProgressBar
         android:id="@+id/loading"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="@dimen/_355sdp"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/signupBtn"
-        android:layout_width="199dp"
+        android:layout_width="@dimen/_199sdp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="339dp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_339sdp"
         android:text="Sign Up"
         android:background="@drawable/btn_gradient_style"
         />

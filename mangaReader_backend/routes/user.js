@@ -72,7 +72,7 @@ router.post('/setProfilePic', (req, res) => {
     
     database.setProfilePic('/profile/'+req.body.email_id+'/'+req.body.email_id + '.jpeg', req.body.email_id, (err, result) => {
       console.log('image uploaded')
-    res.json({ success: 'true', profile_picture: '/profile/' +req.body.email_id+'/'+req.body.email_id + '.jpeg' })
+    res.json({ success: 'true', profile_picture: '/profile/' +req.body.email_id+'/'+req.body.email_id + '.jpeg', result: result })
   })
   })
   

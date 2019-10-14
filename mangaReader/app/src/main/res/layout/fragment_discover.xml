@@ -23,9 +23,9 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/image_slider_viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="190dp"
-                    android:layout_marginBottom="5dp"
-                    android:padding="11dp">
+                    android:layout_height="@dimen/_190sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:padding="@dimen/_11sdp">
 
                 </android.support.v4.view.ViewPager>
 
@@ -33,7 +33,7 @@
                     android:id="@+id/Sliderdots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="160dp"
+                    android:layout_marginTop="@dimen/_160sdp"
                     android:gravity="center_vertical|center_horizontal"
                     android:orientation="horizontal"></LinearLayout>
 
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/framelayout_viewpager"
-                android:layout_marginLeft="11dp"
+                android:layout_marginLeft="@dimen/_11sdp"
                 android:text="Hot Updates"
                 android:textColor="?attr/textcolor"
                 android:textSize="18sp"
@@ -55,8 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/hot_update"
-                android:layout_margin="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="?attr/colorPrimary" />
 
             <TextView
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerId_hot_update"
-                android:layout_marginLeft="11dp"
+                android:layout_marginLeft="@dimen/_11sdp"
                 android:text="Recommended Mangas"
                 android:textColor="?attr/textcolor"
                 android:textSize="18sp"
@@ -75,8 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recommended"
-                android:layout_margin="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="?attr/colorPrimary" />
 
             <TextView
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerId_recommended"
-                android:layout_marginLeft="11dp"
+                android:layout_marginLeft="@dimen/_11sdp"
                 android:text="Popular Mangas"
                 android:textColor="?attr/textcolor"
                 android:textSize="18sp"
@@ -95,8 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_popular"
-                android:layout_margin="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="?attr/colorPrimary" />
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerId_popular"
-                android:layout_marginLeft="11dp"
+                android:layout_marginLeft="@dimen/_11sdp"
                 android:text="Being Reading Right Now"
                 android:textColor="?attr/textcolor"
                 android:textSize="18sp"
@@ -115,8 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/reading_now"
-                android:layout_margin="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="?attr/colorPrimary" />
 
         </RelativeLayout>

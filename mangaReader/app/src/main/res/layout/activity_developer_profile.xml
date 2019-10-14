@@ -24,10 +24,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/akash_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@drawable/one_piece"
-            app:civ_border_width="2dp"
+            app:civ_border_width="@dimen/_2sdp"
             app:civ_border_color="#FF000000"
             android:background="?attr/colorPrimary"/>
 
@@ -37,7 +37,7 @@
             android:id="@+id/akash_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15sdp"
             expandableTextView:maxCollapsedLines="2"
             expandableTextView:animDuration="200"
             android:background="?attr/colorPrimary">
@@ -45,8 +45,8 @@
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:textColor="?attr/textcolor"/>
@@ -54,7 +54,7 @@
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/_16sdp"
                 android:layout_gravity="right|bottom"
                 android:background="@android:color/transparent"/>
 
@@ -63,10 +63,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/deepak_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@drawable/detective_conan"
-            app:civ_border_width="2dp"
+            app:civ_border_width="@dimen/_2sdp"
             app:civ_border_color="#FF000000"
             android:background="?attr/colorPrimary"/>
 
@@ -76,7 +76,7 @@
             android:id="@+id/deepak_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15sdp"
             expandableTextView:maxCollapsedLines="2"
             expandableTextView:animDuration="200"
             android:background="?attr/colorPrimary">
@@ -84,8 +84,8 @@
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_gravity="center"
                 android:textSize="16sp"
                 android:textColor="?attr/textcolor"/>
@@ -93,7 +93,7 @@
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/_16sdp"
                 android:layout_gravity="right|bottom"
                 android:background="@android:color/transparent"/>
         </com.ms.square.android.expandabletextview.ExpandableTextView>
@@ -101,10 +101,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pawan_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@drawable/hunter_x_hunter"
-            app:civ_border_width="2dp"
+            app:civ_border_width="@dimen/_2sdp"
             app:civ_border_color="#FF000000"
             android:background="?attr/colorPrimary"/>
 
@@ -114,7 +114,7 @@
             android:id="@+id/pawan_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15sdp"
             expandableTextView:maxCollapsedLines="2"
             expandableTextView:animDuration="200"
             android:background="?attr/colorPrimary">
@@ -122,8 +122,8 @@
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_gravity="center"
                 android:textSize="16sp"
                 android:textColor="?attr/textcolor" />
@@ -131,7 +131,7 @@
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/_16sdp"
                 android:layout_gravity="right|bottom"
                 android:background="@android:color/transparent"/>
         </com.ms.square.android.expandabletextview.ExpandableTextView>

@@ -14,7 +14,7 @@
         android:textSize="24sp"
         android:textColor="?attr/textcolor"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10sdp"
         />
 
     <RatingBar
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/RatingTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:progressTint="@color/lightPurple"
         />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/chapter_rating"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:text="Rating"
         android:textStyle="normal"
         android:textColor="?attr/textcolor"
@@ -44,9 +44,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtchapter_rating"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="@dimen/_25sdp"
         android:background="?attr/colorPrimary"
         >
 
@@ -65,8 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rate"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginRight="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_30sdp"
             android:background="@drawable/btn_default_style"
             android:backgroundTint="@color/lightPurple"
             android:textColor="@color/white"

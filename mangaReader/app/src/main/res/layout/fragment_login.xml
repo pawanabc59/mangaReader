@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_signup_frag_style"
     tools:context=".LoginFragment"
-    android:paddingLeft="25dp">
+    android:paddingLeft="@dimen/_25sdp">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -13,8 +13,8 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_marginLeft="@dimen/_50sdp"
         android:text="Login"
         android:textAlignment="center"
         android:textSize="36sp"
@@ -25,7 +25,7 @@
         android:id="@+id/login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="107dp"
+        android:layout_marginTop="@dimen/_107sdp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
@@ -38,7 +38,7 @@
         android:id="@+id/login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="@dimen/_190sdp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -51,16 +51,16 @@
         android:id="@+id/login_loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="@dimen/_270sdp"
         android:visibility="gone"
         />
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="275dp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_275sdp"
         android:text="Login"
         android:background="@drawable/btn_gradient_style"
         />

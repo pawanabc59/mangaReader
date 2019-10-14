@@ -231,6 +231,10 @@ public class ProfileFragment extends Fragment {
                     if (success.equals("true")){
                         progressDialog.dismiss();
                         Toast.makeText(getContext(), "Image Uploaded Successfully ", Toast.LENGTH_SHORT).show();
+                        JSONObject jsonObject1 = jsonObject.getJSONObject("result");
+                        String email_id = jsonObject1.getString("email_id");
+                        String profile_picture = jsonObject1.getString("profile_picture");
+                        sessionManager.createSession(email_id,profile_picture);
                     }
                     else{
                         progressDialog.dismiss();

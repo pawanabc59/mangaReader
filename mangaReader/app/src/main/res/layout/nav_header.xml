@@ -7,12 +7,12 @@
     android:layout_gravity="center">
 
     <android.support.v7.widget.CardView
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_130sdp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="80dp"
-        android:elevation="5dp">
+        android:layout_marginTop="@dimen/_30sdp"
+        app:cardCornerRadius="@dimen/_80sdp"
+        android:elevation="@dimen/_5sdp">
 
         <ImageView
             android:id="@+id/nav_profile_photo"
@@ -29,7 +29,7 @@
         android:textColor="?attr/textcolor"
         android:textSize="18sp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10sdp"
         />
 
 

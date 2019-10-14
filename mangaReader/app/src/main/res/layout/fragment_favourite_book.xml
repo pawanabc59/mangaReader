@@ -9,8 +9,8 @@
         android:id="@+id/favourite_book_recyclerview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_margin="@dimen/_5sdp"
         android:background="?attr/white_black"
         >
 

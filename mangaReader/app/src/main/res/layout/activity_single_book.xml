@@ -11,7 +11,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/book_appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/_200sdp"
         android:fitsSystemWindows="true">
 
         <FrameLayout
@@ -36,29 +36,29 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginTop="@dimen/_11sdp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/book_Thumbnail"
-                        android:layout_width="105dp"
-                        android:layout_height="145dp"
-                        android:layout_marginLeft="45dp"
+                        android:layout_width="@dimen/_105sdp"
+                        android:layout_height="@dimen/_145sdp"
+                        android:layout_marginLeft="@dimen/_85sdp"
                         android:background="#2d2d2d"
                         android:scaleType="centerCrop" />
 
                     <LinearLayout
-                        android:layout_width="277dp"
+                        android:layout_width="@dimen/_277sdp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingLeft="25dp">
+                        android:paddingLeft="@dimen/_25sdp">
 
                         <TextView
                             android:id="@+id/book_txttitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="11dp"
+                            android:layout_marginTop="@dimen/_11sdp"
                             android:text="Book Title"
                             android:textColor="@color/intro_title_color"
                             android:textSize="18sp"
@@ -68,9 +68,9 @@
                             android:id="@+id/book_txtcategory"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="11dp"
+                            android:layout_marginTop="@dimen/_11sdp"
                             android:background="#edecec"
-                            android:padding="6dp"
+                            android:padding="@dimen/_6sdp"
                             android:text="Category" />
 
                         <RatingBar
@@ -80,6 +80,7 @@
                             android:layout_marginLeft="-73dp"
                             android:outlineAmbientShadowColor="@color/white"
                             android:progressTint="@color/white"
+                            android:clickable="false"
                             android:scaleX="0.4"
                             android:scaleY="0.4" />
 
@@ -116,8 +117,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:text="Description : "
                 android:textColor="?attr/textcolor"
                 android:textSize="20sp"
@@ -129,7 +130,7 @@
                 android:id="@+id/book_txtdescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:background="?attr/colorPrimary"
                 expandableTextView:animDuration="200"
                 expandableTextView:maxCollapsedLines="3">
@@ -139,8 +140,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="?attr/textcolor"
                     android:textSize="14sp" />
 
@@ -150,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
                     android:background="@android:color/transparent"
-                    android:padding="16dp" />
+                    android:padding="@dimen/_16sdp" />
             </com.ms.square.android.expandabletextview.ExpandableTextView>
 
         </LinearLayout>
@@ -172,8 +173,8 @@
         android:id="@+id/book_btnRemoveFavourite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="290dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginLeft="@dimen/_240sdp"
+        android:layout_marginTop="@dimen/_420sdp"
         android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_delete_black_24dp"
         android:visibility="gone" />
@@ -182,8 +183,8 @@
         android:id="@+id/book_btnFavourite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="290dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginLeft="@dimen/_240sdp"
+        android:layout_marginTop="@dimen/_420sdp"
         android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_favorite_white" />
 

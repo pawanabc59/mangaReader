@@ -20,16 +20,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        app:cardCornerRadius="75dp"
+        app:cardCornerRadius="@dimen/_75sdp"
         android:background="@drawable/circle"
         app:cardBackgroundColor="?attr/colorPrimary"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/_25sdp"
         >
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="155dp"
-        android:layout_height="155dp"
+        android:layout_width="@dimen/_155sdp"
+        android:layout_height="@dimen/_155sdp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/circle"
         android:scaleType="centerCrop"
@@ -44,7 +44,7 @@
         android:layout_below="@+id/profile_image_cardview"
         android:layout_centerHorizontal="true"
         android:text="Edit Photo"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:textColor="#fff"
         android:background="?attr/buttoncolor"
         />
@@ -55,13 +55,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_photo"
         android:orientation="horizontal"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="@dimen/_11sdp"
         android:background="?attr/colorPrimary"
         >
 
         <ImageView
-            android:layout_width="77dp"
-            android:layout_height="51dp"
+            android:layout_width="@dimen/_77sdp"
+            android:layout_height="@dimen/_51sdp"
             android:src="@drawable/ic_email"
             />
 
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="Email"
             android:textSize="24sp"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="@dimen/_11sdp"
             android:textColor="?attr/textcolor"
             />
 
@@ -112,7 +112,7 @@
         android:text="About Us"
         android:textColor="#fff"
         android:layout_below="@+id/layout_text"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:background="?attr/buttoncolor"
         />
 
@@ -122,8 +122,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnabout_us"
         android:orientation="horizontal"
-        android:paddingHorizontal="25dp"
-        android:layout_marginTop="20dp"
+        android:paddingHorizontal="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="?attr/colorPrimary"
         android:paddingVertical="10dp">
         <TextView
@@ -148,9 +148,9 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="555dp"
+        android:layout_marginTop="@dimen/_425sdp"
         android:layout_centerHorizontal="true"
         android:text="LOGOUT"
         android:background="@drawable/btn_gradient_style"

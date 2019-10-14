@@ -12,7 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/_200sdp"
         android:fitsSystemWindows="true"
         >
 
@@ -57,28 +57,28 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="@dimen/_11sdp"
             >
 
             <ImageView
                 android:id="@+id/comicThumbnail"
-                android:layout_width="105dp"
-                android:layout_height="145dp"
+                android:layout_width="@dimen/_105sdp"
+                android:layout_height="@dimen/_145sdp"
+                android:layout_marginLeft="@dimen/_85sdp"
                 android:background="#2d2d2d"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="45dp"/>
+                android:scaleType="centerCrop" />
 
             <LinearLayout
-                android:layout_width="277dp"
+                android:layout_width="@dimen/_277sdp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="25dp">
+                android:paddingLeft="@dimen/_25sdp">
 
                 <TextView
                     android:id="@+id/txttitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginTop="@dimen/_11sdp"
                     android:text="Comic Title"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -89,9 +89,9 @@
                     android:id="@+id/txtcategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
+                    android:layout_marginTop="@dimen/_11sdp"
                     android:background="#edecec"
-                    android:padding="6dp"
+                    android:padding="@dimen/_6sdp"
                     android:text="Category" />
 
                 <!--<TextView-->
@@ -154,8 +154,8 @@
                 android:textColor="?attr/textcolor"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_marginTop="7dp"
-                android:layout_marginLeft="7dp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_7sdp"
                 />
 
         <com.ms.square.android.expandabletextview.ExpandableTextView
@@ -164,7 +164,7 @@
             android:id="@+id/txtdescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="@dimen/_7sdp"
             expandableTextView:maxCollapsedLines="3"
             expandableTextView:animDuration="200"
             android:background="?attr/colorPrimary">
@@ -173,8 +173,8 @@
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_gravity="center"
                 android:textSize="14sp"
                 android:textColor="?attr/textcolor"
@@ -183,7 +183,7 @@
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/_16sdp"
                 android:layout_gravity="right|bottom"
                 android:background="@android:color/transparent"/>
         </com.ms.square.android.expandabletextview.ExpandableTextView>
@@ -192,7 +192,7 @@
             android:id="@+id/chapter_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="@dimen/_7sdp"
             >
 
         </android.support.v7.widget.RecyclerView>
@@ -207,8 +207,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete_black_24dp"
         android:backgroundTint="@color/colorAccent"
-        android:layout_marginTop="590dp"
-        android:layout_marginLeft="290dp"
+        android:layout_marginTop="@dimen/_460sdp"
+        android:layout_marginLeft="@dimen/_230sdp"
         android:visibility="gone"
         />
 
@@ -218,8 +218,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_favorite_white"
         android:backgroundTint="@color/colorAccent"
-        android:layout_marginTop="590dp"
-        android:layout_marginLeft="290dp"
+        android:layout_marginTop="@dimen/_460sdp"
+        android:layout_marginLeft="@dimen/_230sdp"
         />
 
 </android.support.design.widget.CoordinatorLayout>
