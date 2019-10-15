@@ -53,6 +53,9 @@ dependencies {
 //    sdp library to position the elements on the right position in all sizes of device
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
+//    Permission library
+    implementation 'com.github.karanchuri:PermissionManager:0.1.0'
+
 //    auto scroll images
 //    implementation 'cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2'
 }
