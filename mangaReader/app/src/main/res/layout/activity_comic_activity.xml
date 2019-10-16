@@ -12,7 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_170sdp"
         android:fitsSystemWindows="true"
         >
 
@@ -64,7 +64,7 @@
                 android:id="@+id/comicThumbnail"
                 android:layout_width="@dimen/_105sdp"
                 android:layout_height="@dimen/_145sdp"
-                android:layout_marginLeft="@dimen/_85sdp"
+                android:layout_marginLeft="@dimen/_95sdp"
                 android:background="#2d2d2d"
                 android:scaleType="centerCrop" />
 

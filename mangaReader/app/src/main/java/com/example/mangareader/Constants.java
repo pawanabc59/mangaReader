@@ -2,7 +2,7 @@ package com.example.mangareader;
 
 public class Constants {
 
-    public static final String main_path = "https://mreader.herokuapp.com";
+    public static final String main_path = "http://192.168.0.105:5656";
     public static final String url_login = main_path+"/user/login";
     public static final String url_get_chapters = main_path+"/manga/getChapters";
     public static final String url_add_favourites = main_path+"/user/favourite/add";

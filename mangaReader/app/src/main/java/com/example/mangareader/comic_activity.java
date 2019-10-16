@@ -149,8 +149,9 @@ public class comic_activity extends AppCompatActivity {
             });
         }
         else{
+            btnFavourite.setVisibility(View.GONE);
             btnFavourite.setEnabled(false);
-            Toast.makeText(getApplicationContext(), "You need to login to add the mangas to your favorite list", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "You need to login to add the mangas to your favorite list", Toast.LENGTH_LONG).show();
         }
 
         btnRemoveFavourite.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +252,7 @@ public class comic_activity extends AppCompatActivity {
                     if (success.equals("true")){
                         btnRemoveFavourite.setVisibility(View.GONE);
                         btnFavourite.setVisibility(View.VISIBLE);
-                        Toast.makeText(getApplicationContext(),"Removed from  favourites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Removed from favourites", Toast.LENGTH_SHORT).show();
 //                        recreate();
                     }
 

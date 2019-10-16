@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 public class imageSliderAdapter extends PagerAdapter {
 
+//    This file is now redundant since we are using carousel view to show the images
+
     private Context context;
     private LayoutInflater layoutInflater;
     private Integer [] images = {R.drawable.one_piece2, R.drawable.hunter_x_hunter, R.drawable.death_note, R.drawable.detective_conan, R.drawable.full_metal};

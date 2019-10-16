@@ -11,7 +11,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/book_appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_170sdp"
         android:fitsSystemWindows="true">
 
         <FrameLayout
@@ -44,7 +44,7 @@
                         android:id="@+id/book_Thumbnail"
                         android:layout_width="@dimen/_105sdp"
                         android:layout_height="@dimen/_145sdp"
-                        android:layout_marginLeft="@dimen/_85sdp"
+                        android:layout_marginLeft="@dimen/_95sdp"
                         android:background="#2d2d2d"
                         android:scaleType="centerCrop" />
 
@@ -124,8 +124,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <com.ms.square.android.expandabletextview.ExpandableTextView
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/book_txtdescription"
                 android:layout_width="match_parent"
@@ -160,13 +159,14 @@
 
     <Button
         android:id="@+id/book_read_now"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text="Read Now"
-        android:textSize="20sp"
-        android:textColor="?attr/textcolor"
-        android:background="?attr/buttoncolor"
-        android:layout_marginTop="650dp"
+        android:textSize="18sp"
+        android:background="@drawable/btn_gradient_style"
+        android:layout_gravity="center"
+        android:layout_marginTop="550dp"
         />
 
     <android.support.design.widget.FloatingActionButton
@@ -174,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_240sdp"
-        android:layout_marginTop="@dimen/_420sdp"
+        android:layout_marginTop="@dimen/_380sdp"
         android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_delete_black_24dp"
         android:visibility="gone" />
@@ -184,7 +184,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_240sdp"
-        android:layout_marginTop="@dimen/_420sdp"
+        android:layout_marginTop="@dimen/_380sdp"
         android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_favorite_white" />
 

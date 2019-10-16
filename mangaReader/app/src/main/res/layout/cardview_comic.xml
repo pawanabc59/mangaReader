@@ -4,11 +4,12 @@
     android:id="@+id/cardview_id"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:layout_width="@dimen/_100sdp"
-    android:layout_height="@dimen/_160sdp"
+    android:layout_width="@dimen/_90sdp"
+    android:layout_height="@dimen/_145sdp"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:background="?attr/white_black"
     cardview:cardBackgroundColor="?attr/white_black"
+    android:layout_margin="@dimen/_6sdp"
     >
 
     <!--cardview:cardCornerRadius="6dp"-->
@@ -16,21 +17,21 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_160sdp"
-        android:layout_margin="@dimen/_7sdp"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_145sdp"
         android:background="?attr/white_black"
+        android:layout_margin="@dimen/_7sdp"
         >
 
         <FrameLayout
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_130sdp"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_115sdp"
             android:background="?attr/white_black">
         
         <ImageView
             android:id="@+id/comic_img_id"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_130sdp"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_115sdp"
             android:scaleType="centerCrop"
             android:background="?attr/white_black"
             />
@@ -41,7 +42,8 @@
                 android:layout_height="@dimen/_28sdp"
                 android:background="@null"
                 android:drawableRight="@drawable/ic_favorite_full_white"
-                android:layout_marginLeft="@dimen/_64sdp"
+                android:layout_marginLeft="@dimen/_57sdp"
+                android:layout_marginTop="@dimen/_1sdp"
                 />
             <Button
                 android:id="@+id/btnShow_remove_favourite"
@@ -49,7 +51,8 @@
                 android:layout_height="@dimen/_28sdp"
                 android:background="@null"
                 android:drawableRight="@drawable/ic_favorite_black_red"
-                android:layout_marginLeft="@dimen/_64sdp"
+                android:layout_marginLeft="@dimen/_57sdp"
+                android:layout_marginTop="@dimen/_1sdp"
                 android:visibility="gone"
                 />
 
@@ -57,9 +60,9 @@
 
         <TextView
             android:id="@+id/comic_title_id"
-            android:layout_width="@dimen/_100sdp"
+            android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_30sdp"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:gravity="center"
             android:text="Book Title"
             android:textColor="?attr/textcolor"

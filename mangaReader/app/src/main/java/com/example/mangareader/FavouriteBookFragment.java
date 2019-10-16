@@ -1,6 +1,8 @@
 package com.example.mangareader;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,6 +37,7 @@ public class FavouriteBookFragment extends Fragment {
     Context thisContext;
     List<comic> lstBook;
     RecyclerView favourite_book_recyclerview;
+    RecyclerViewAdapter myAdapter;
     SessionManager sessionManager;
     Context contextThemeWrapper;
 
@@ -57,12 +60,34 @@ public class FavouriteBookFragment extends Fragment {
 
         View  view = localInflater.inflate(R.layout.fragment_favourite_book, container, false);
 
+        if (!sessionManager.isLoggin()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("IMPORTANT!!!")
+                    .setMessage("You need to login to add and see your favourite book")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            Do whatever you want after OK is clicked
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
         HashMap<String, String> user = sessionManager.getUserDetails();
         String email = user.get(sessionManager.EMAIL);
 
         lstBook = new ArrayList<>();
 
         showFavouriteBooks(email);
+
+        favourite_book_recyclerview = view.findViewById(R.id.favourite_book_recyclerview);
+        myAdapter = new RecyclerViewAdapter(getContext(), lstBook);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        favourite_book_recyclerview.setLayoutManager(manager);
+        favourite_book_recyclerview.setAdapter(myAdapter);
 
         return view;
     }
@@ -88,7 +113,9 @@ public class FavouriteBookFragment extends Fragment {
                     JSONArray jsonArray = jsonObject1.getJSONArray("favourite_books");
 
                     if (success.equals("true")){
-                        Toast.makeText(getContext(),"Favourites Books", Toast.LENGTH_SHORT).show();
+
+//                        Don't put toast at run time because if user moves to fast then the app will crash
+//                        Toast.makeText(getContext(),"Favourites Books", Toast.LENGTH_SHORT).show();
 
                         for (int i = 0 ; i < jsonArray.length(); i++){
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -103,15 +130,8 @@ public class FavouriteBookFragment extends Fragment {
 
                             lstBook.add(new comic(title, "Fun", description, thumbnail, manga_id, favourite));
 
-                            favourite_book_recyclerview = getActivity().findViewById(R.id.favourite_book_recyclerview);
-                            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), lstBook);
-                            GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            favourite_book_recyclerview.setLayoutManager(manager);
-                            favourite_book_recyclerview.setAdapter(myAdapter);
-
                         }
-
+                        myAdapter.notifyDataSetChanged();
 
                     }
 

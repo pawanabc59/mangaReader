@@ -35,6 +35,7 @@ public class BookListFragment extends Fragment {
     String static_url = main_path;
     List<BookModel> lstBooks;
     RecyclerView myrecyclerview;
+    BookAdapter myAdapter;
     String email = "";
 
     @Override
@@ -76,6 +77,13 @@ public class BookListFragment extends Fragment {
 
         getBooks();
 
+        myrecyclerview = view.findViewById(R.id.book_list_recyclerview);
+        myAdapter = new BookAdapter(getContext(), lstBooks);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        myrecyclerview.setLayoutManager(manager);
+        myrecyclerview.setAdapter(myAdapter);
+
         return view;
     }
 
@@ -98,7 +106,9 @@ public class BookListFragment extends Fragment {
                     JSONArray jsonArray = jsonObject1.getJSONArray("books");
 
                     if (success.equals("true")){
-                        Toast.makeText(getContext(),"All Books", Toast.LENGTH_SHORT).show();
+
+//                        Don't put toast at run time because if user moves to fast then the app will crash
+//                        Toast.makeText(getContext(),"All Books", Toast.LENGTH_SHORT).show();
 
                         for (int i = 0 ; i < jsonArray.length(); i++){
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -114,14 +124,8 @@ public class BookListFragment extends Fragment {
 
                             lstBooks.add(new BookModel(title, "Fun", description, thumbnail, manga_id, favourite, book_path));
 
-                            myrecyclerview = getActivity().findViewById(R.id.book_list_recyclerview);
-                            BookAdapter myAdapter = new BookAdapter(getContext(), lstBooks);
-                            GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            myrecyclerview.setLayoutManager(manager);
-                            myrecyclerview.setAdapter(myAdapter);
-
                         }
+                        myAdapter.notifyDataSetChanged();
 
 
                     }

@@ -132,8 +132,9 @@ public class SingleBookActivity extends AppCompatActivity {
             });
         }
         else{
+            book_btnFavourite.setVisibility(View.GONE);
             book_btnFavourite.setEnabled(false);
-            Toast.makeText(getApplicationContext(), "You need to login to add the books to your favorite list", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "You need to login to add the books to your favorite list", Toast.LENGTH_LONG).show();
         }
 
         book_btnRemoveFavourite.setOnClickListener(new View.OnClickListener() {

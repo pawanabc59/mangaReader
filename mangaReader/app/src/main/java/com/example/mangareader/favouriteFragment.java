@@ -1,6 +1,8 @@
 package com.example.mangareader;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -38,6 +40,7 @@ public class favouriteFragment extends Fragment {
     Context thisContext;
     List<comic> lstComic;
     RecyclerView myrecyclerview;
+    RecyclerViewAdapter myAdapter;
     SessionManager sessionManager;
     Toolbar fav_Toolbar;
     Context contextThemeWrapper;
@@ -62,6 +65,21 @@ public class favouriteFragment extends Fragment {
 
         View view = localInflater.inflate(R.layout.fragment_favourite, container, false);
 
+        if (!sessionManager.isLoggin()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("IMPORTANT!!!")
+                    .setMessage("You need to Login to Put your mangas in to favourite and to see them")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            write code if you want to do anything after clicking OK button
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
 //        View view = inflater.inflate(R.layout.fragment_favourite, container, false);
 
 //        fav_Toolbar = view.findViewById(R.id.fav_Toolbar);
@@ -71,6 +89,7 @@ public class favouriteFragment extends Fragment {
         HashMap<String, String> user = sessionManager.getUserDetails();
         String email = user.get(sessionManager.EMAIL);
 
+        myrecyclerview = view.findViewById(R.id.recyclerId);
 
         lstComic = new ArrayList<>();
 //        lstComic.add(new comic("One Piece", "Category Comic", "Description Comic", R.drawable.one_piece));
@@ -87,6 +106,13 @@ public class favouriteFragment extends Fragment {
 //        lstComic.add(new comic("One Piece", "Category Comic", "Description Comic", R.drawable.one_piece));
 
         showFavouriteManga(email);
+
+        myAdapter = new RecyclerViewAdapter(getActivity(), lstComic);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        myrecyclerview.setLayoutManager(manager);
+        myrecyclerview.setAdapter(myAdapter);
+
 
         return view;
     }
@@ -112,7 +138,10 @@ public class favouriteFragment extends Fragment {
                     JSONArray jsonArray = jsonObject1.getJSONArray("favourites");
 
                     if (success.equals("true")){
-                        Toast.makeText(getContext(),"Favourites Mangas", Toast.LENGTH_SHORT).show();
+
+//                        Don't put toast at run time because if user moves to fast then the app will crash
+
+//                        Toast.makeText(getContext(),"Favourites Mangas", Toast.LENGTH_SHORT).show();
 
                         for (int i = 0 ; i < jsonArray.length(); i++){
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -127,14 +156,12 @@ public class favouriteFragment extends Fragment {
 
                             lstComic.add(new comic(title, "Fun", description, thumbnail, manga_id, favourite));
 
-                            myrecyclerview = getActivity().findViewById(R.id.recyclerId);
-                            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), lstComic);
-                            GridLayoutManager manager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            myrecyclerview.setLayoutManager(manager);
-                            myrecyclerview.setAdapter(myAdapter);
 
                         }
+
+//                        This is to set the adapter such that it notifies every time the data is changed. If not written then the data would not show.
+                        myAdapter.notifyDataSetChanged();
+
 
 
                     }

@@ -56,6 +56,9 @@ dependencies {
 //    Permission library
     implementation 'com.github.karanchuri:PermissionManager:0.1.0'
 
+//    Carousel library for image sliding
+    implementation 'com.synnapps:carouselview:0.1.5'
+
 //    auto scroll images
 //    implementation 'cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2'
 }

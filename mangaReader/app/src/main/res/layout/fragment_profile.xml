@@ -9,6 +9,15 @@
     android:background="?attr/white_black"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
     <!--<Toolbar-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -56,12 +65,13 @@
         android:layout_below="@+id/btn_photo"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_11sdp"
+        android:gravity="center"
         android:background="?attr/colorPrimary"
         >
 
         <ImageView
-            android:layout_width="@dimen/_77sdp"
-            android:layout_height="@dimen/_51sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:src="@drawable/ic_email"
             />
 
@@ -70,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:layout_marginLeft="@dimen/_11sdp"
             android:textColor="?attr/textcolor"
             />
@@ -107,13 +117,14 @@
 
     <Button
         android:id="@+id/btnabout_us"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="About Us"
         android:textColor="#fff"
         android:layout_below="@+id/layout_text"
         android:layout_marginTop="@dimen/_25sdp"
-        android:background="?attr/buttoncolor"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_gradient_style"
         />
 
     <LinearLayout
@@ -148,12 +159,16 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="@dimen/_250sdp"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_425sdp"
         android:layout_centerHorizontal="true"
         android:text="LOGOUT"
         android:background="@drawable/btn_gradient_style"
         />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

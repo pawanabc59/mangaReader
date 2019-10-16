@@ -23,9 +23,9 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/image_slider_viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_190sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:padding="@dimen/_11sdp">
+                    android:layout_height="@dimen/_170sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:padding="@dimen/_10sdp">
 
                 </android.support.v4.view.ViewPager>
 
@@ -33,9 +33,21 @@
                     android:id="@+id/Sliderdots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_160sdp"
+                    android:layout_marginTop="@dimen/_145sdp"
                     android:gravity="center_vertical|center_horizontal"
                     android:orientation="horizontal"></LinearLayout>
+
+<!--                    <com.synnapps.carouselview.CarouselView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_180sdp"-->
+<!--                        android:id="@+id/image_carousel"-->
+<!--                        app:pageColor="#000"-->
+<!--                        app:fillColor="#fff"-->
+<!--                        app:slideInterval="2000"-->
+<!--                        app:radius="@dimen/_4sdp"-->
+<!--                        app:strokeColor="#fff"-->
+<!--                        app:strokeWidth="@dimen/_1sdp"-->
+<!--                        />-->
 
             </FrameLayout>
 

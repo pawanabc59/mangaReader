@@ -22,6 +22,9 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageClickListener;
+import com.synnapps.carouselview.ImageListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +45,7 @@ public class discoverFragment extends Fragment {
 
     ViewPager viewPager;
     RecyclerView popular_recyclerview, recyclerId_reading, recyclerId_recommended, recyclerId_hot_update;
+    RecyclerViewAdapter hotAdapter, recommendedAdapter,myAdapter,readingAdapter;
 
     //    private AutoScrollViewPager viewPager;
     private String manga_id;
@@ -51,11 +55,20 @@ public class discoverFragment extends Fragment {
     String email;
     Context contextThemeWrapper;
     private ImageView [] dots;
+    CarouselView carouselView;
     List<comic> hot_updates_comics, recommended_comics, popular_comics, quick_read_comics;
 
 //    private Button addCardFavourite, removeCardFavourite;
     private Timer timer;
     private int current_position = 0;
+
+//    private int[] mImages = new int[]{
+//            R.drawable.one_piece2, R.drawable.hunter_x_hunter, R.drawable.death_note, R.drawable.detective_conan, R.drawable.full_metal
+//    };
+//
+//    private String[] mImageTitle = new String[]{
+//            "One Piece","Hunter x Hunter","Death Note","Detective Conan","Full Metal Alchemist: Brotherhood"
+//    };
 
     @Nullable
     @Override
@@ -78,9 +91,23 @@ public class discoverFragment extends Fragment {
 
         viewPager = view.findViewById(R.id.image_slider_viewPager);
 
-
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.EMAIL);
+
+//        image Carousel
+//        carouselView = view.findViewById(R.id.image_carousel);
+//        carouselView.setImageListener(new ImageListener() {
+//            @Override
+//            public void setImageForPosition(int position, ImageView imageView) {
+//                imageView.setImageResource(mImages[position]);
+//            }
+//        });
+//        carouselView.setImageClickListener(new ImageClickListener() {
+//            @Override
+//            public void onClick(int position) {
+//                Toast.makeText(getContext(), mImageTitle[position],Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         sliderDotspanel = view.findViewById(R.id.Sliderdots);
 
@@ -135,6 +162,11 @@ public class discoverFragment extends Fragment {
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new MyTimerTask(), 2000, 2000);
+
+
+
+
+
 //
         hot_updates_comics = new ArrayList<>();
         recommended_comics = new ArrayList<>();
@@ -153,7 +185,32 @@ public class discoverFragment extends Fragment {
 
         getManga();
 
-        Toast.makeText(getContext(), "Here you come again", Toast.LENGTH_LONG).show();
+        recyclerId_hot_update = view.findViewById(R.id.recyclerId_hot_update);
+        hotAdapter = new RecyclerViewAdapter(getContext(), hot_updates_comics);
+        LinearLayoutManager hotManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        recyclerId_hot_update.setLayoutManager(hotManager);
+        recyclerId_hot_update.setAdapter(hotAdapter);
+
+        recyclerId_recommended = view.findViewById(R.id.recyclerId_recommended);
+        recommendedAdapter = new RecyclerViewAdapter(getContext(), recommended_comics);
+        LinearLayoutManager recommendedManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        recyclerId_recommended.setLayoutManager(recommendedManager);
+        recyclerId_recommended.setAdapter(recommendedAdapter);
+
+        popular_recyclerview = view.findViewById(R.id.recyclerId_popular);
+        myAdapter = new RecyclerViewAdapter(getContext(), popular_comics);
+//        To show horizontal scroll view
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        popular_recyclerview.setLayoutManager(manager);
+        popular_recyclerview.setAdapter(myAdapter);
+
+        recyclerId_reading = view.findViewById(R.id.recyclerId_reading);
+        readingAdapter = new RecyclerViewAdapter(getContext(), quick_read_comics);
+        LinearLayoutManager readingManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        recyclerId_reading.setLayoutManager(readingManager);
+        recyclerId_reading.setAdapter(readingAdapter);
+
+//        Toast.makeText(getContext(), "Here you come again", Toast.LENGTH_LONG).show();
 
         return view;
     }
@@ -208,13 +265,9 @@ System.out.println(hot_updates);
 //                                    lstComic.add(new comic(title, "Fun", description, "http://192.168.0.106"+cover_photo));
                             hot_updates_comics.add(comic);
 
-                            recyclerId_hot_update = getActivity().findViewById(R.id.recyclerId_hot_update);
-                            RecyclerViewAdapter hotAdapter = new RecyclerViewAdapter(getContext(), hot_updates_comics);
-                            LinearLayoutManager hotManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            recyclerId_hot_update.setLayoutManager(hotManager);
-                            recyclerId_hot_update.setAdapter(hotAdapter);
-
                         }
+
+                        hotAdapter.notifyDataSetChanged();
 
                         for (int i = 0; i<recommended.length(); i++){
                             JSONObject jsonObject1 = recommended.getJSONObject(i);
@@ -234,13 +287,9 @@ System.out.println(hot_updates);
 
                             recommended_comics.add(comic);
 
-                            recyclerId_recommended = getActivity().findViewById(R.id.recyclerId_recommended);
-                            RecyclerViewAdapter recommendedAdapter = new RecyclerViewAdapter(getContext(), recommended_comics);
-                            LinearLayoutManager recommendedManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            recyclerId_recommended.setLayoutManager(recommendedManager);
-                            recyclerId_recommended.setAdapter(recommendedAdapter);
-
                         }
+
+                        recommendedAdapter.notifyDataSetChanged();
 
                         for (int i = 0; i<popular.length(); i++){
                             JSONObject jsonObject1 = popular.getJSONObject(i);
@@ -260,14 +309,8 @@ System.out.println(hot_updates);
 
                             popular_comics.add(comic);
 
-                            popular_recyclerview = getActivity().findViewById(R.id.recyclerId_popular);
-                            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), popular_comics);
-//        To show horizontal scroll view
-                            LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            popular_recyclerview.setLayoutManager(manager);
-                            popular_recyclerview.setAdapter(myAdapter);
-
                         }
+                        myAdapter.notifyDataSetChanged();
 
                         for (int i = 0; i<quick_reads.length(); i++){
                             JSONObject jsonObject1 = quick_reads.getJSONObject(i);
@@ -286,13 +329,8 @@ System.out.println(hot_updates);
 
                             quick_read_comics.add(comic);
 
-                            recyclerId_reading = getActivity().findViewById(R.id.recyclerId_reading);
-                            RecyclerViewAdapter readingAdapter = new RecyclerViewAdapter(getContext(), quick_read_comics);
-                            LinearLayoutManager readingManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
-                            recyclerId_reading.setLayoutManager(readingManager);
-                            recyclerId_reading.setAdapter(readingAdapter);
-
                         }
+                        readingAdapter.notifyDataSetChanged();
 
                     }
                     else if (success.equals("false")){

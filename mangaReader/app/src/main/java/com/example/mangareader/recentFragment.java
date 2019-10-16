@@ -1,6 +1,8 @@
 package com.example.mangareader;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,6 +35,7 @@ import static com.example.mangareader.Constants.url_recent_mangas;
 public class recentFragment extends Fragment {
 
     RecyclerView recyclerView;
+    comicAdapter adapter;
     ArrayList<comicModel> comicList;
     SessionManager sessionManager;
     String email;
@@ -60,6 +63,21 @@ public class recentFragment extends Fragment {
 
 //        View view =  inflater.inflate(R.layout.fragment_recent, container, false);
 
+        if (!sessionManager.isLoggin()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("IMPORTANT!!!")
+                    .setMessage("You need to login to see which manga you have recently viewed")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            Do what you want after OK Button is clicked
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
 
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(sessionManager.EMAIL);
@@ -80,6 +98,13 @@ public class recentFragment extends Fragment {
 //        comicList.add(new comicModel(R.drawable.one_piece, "One Piece", "Action"));
 
         recentMangas();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
+
+        adapter = new comicAdapter(getContext(),comicList);
+        recyclerView.setLayoutManager(rvLiLayoutManager);
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
@@ -123,15 +148,8 @@ public class recentFragment extends Fragment {
 
                             comicList.add(new comicModel(cover_photo_path, title, description, id_manga, favourite));
 
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                            RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
-
-                            recyclerView.setLayoutManager(rvLiLayoutManager);
-
-                            comicAdapter adapter = new comicAdapter(getContext(),comicList);
-                            recyclerView.setAdapter(adapter);
-
                         }
+                        adapter.notifyDataSetChanged();
                     }
 
                 } catch (JSONException e) {
