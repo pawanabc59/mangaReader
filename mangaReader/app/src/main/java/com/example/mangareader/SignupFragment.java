@@ -27,6 +27,8 @@ public class SignupFragment extends Fragment {
     private Button btnsignup;
     private ProgressBar loading;
 
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
 //    public boolean isLogin = false;
 
     @Override
@@ -57,6 +59,12 @@ public class SignupFragment extends Fragment {
                 }
                 else if (c_password.isEmpty()){
                     sc_password.setError("Please insert confirm password");
+                }
+                else if (!email.matches(emailPattern)){
+                    semail.setError("Please enter valid email address");
+                }
+                else if (password.length()<6){
+                    spassword.setError("Password length should be minimum of 6 digits");
                 }
                 else{
                     if (password.equals(c_password)) {

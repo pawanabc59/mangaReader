@@ -29,6 +29,8 @@ public class LoginFragment extends Fragment {
 
     SessionManager sessionManager;
 
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,6 +55,12 @@ public class LoginFragment extends Fragment {
                 }
                 else if (mpassword.isEmpty()){
                     password.setError("Please insert password");
+                }
+                else if (!memail.matches(emailPattern)){
+                    email.setError("Please provide valid email address");
+                }
+                else if (mpassword.length()<6){
+                    password.setError("Password is too short");
                 }
                 else{
                     Login(memail, mpassword);

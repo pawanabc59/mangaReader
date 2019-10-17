@@ -49,6 +49,8 @@ public class comic_activity extends AppCompatActivity {
     SessionManager sessionManager;
     RecyclerView recyclerView;
     ArrayList<chapterModel> chapterList;
+
+    chapterAdapter adapter;
 //    RelativeLayout relativeLayout;
 
 
@@ -185,6 +187,15 @@ public class comic_activity extends AppCompatActivity {
 
         getChapters(mEmail);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+
+        RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
+
+        adapter = new chapterAdapter(getApplicationContext(), chapterList);
+
+        recyclerView.setLayoutManager(rvLiLayoutManager);
+        recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -310,15 +321,8 @@ public class comic_activity extends AppCompatActivity {
 
                             chapterList.add(new chapterModel("Chapter "+chapter_number+" - "+chapter_name, chapter_path));
 
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-
-                            RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
-
-                            chapterAdapter adapter = new chapterAdapter(getApplicationContext(), chapterList);
-
-                            recyclerView.setLayoutManager(rvLiLayoutManager);
-                            recyclerView.setAdapter(adapter);
                         }
+                        adapter.notifyDataSetChanged();
 
                     }
                     else if (success.equals("false")){
@@ -407,10 +411,10 @@ public class comic_activity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivity(intent);
+//    }
 }

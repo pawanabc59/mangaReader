@@ -48,14 +48,14 @@
 
     <Button
         android:id="@+id/btn_photo"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profile_image_cardview"
         android:layout_centerHorizontal="true"
         android:text="Edit Photo"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:textColor="#fff"
-        android:background="?attr/buttoncolor"
+        android:background="@drawable/btn_gradient_style"
         />
 
     <LinearLayout
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_photo"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_11sdp"
+        android:layout_marginTop="@dimen/_14sdp"
         android:gravity="center"
         android:background="?attr/colorPrimary"
         >
@@ -73,16 +73,19 @@
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:src="@drawable/ic_email"
+            android:layout_gravity="center"
             />
 
         <TextView
             android:id="@+id/edit_email"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/_11sdp"
             android:textColor="?attr/textcolor"
+            android:layout_gravity="center"
+            android:gravity="center"
             />
 
     </LinearLayout>
