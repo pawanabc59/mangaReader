@@ -108,7 +108,7 @@ public class LoginFragment extends Fragment {
 
                         sessionManager.createSession(email, profile_image);
 
-                        Fragment fragment = new downloadFragment();
+                        Fragment fragment = new ProfileFragment();
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.account_fragment, fragment);

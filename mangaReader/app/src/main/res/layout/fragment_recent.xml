@@ -6,12 +6,12 @@
     android:fitsSystemWindows="true"
     android:background="?attr/white_black">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:background="?attr/white_black"
-        >
+<!--    <android.support.design.widget.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        android:background="?attr/white_black"-->
+<!--        >-->
 
 <!--        <android.widget.Toolbar-->
 <!--            android:layout_width="match_parent"-->
@@ -27,10 +27,10 @@
             <!---->
         <!--</android.support.design.widget.CollapsingToolbarLayout>-->
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/white_black">
+<!--        <android.support.v4.widget.NestedScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="?attr/white_black">-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv"
@@ -40,8 +40,33 @@
 
             </android.support.v7.widget.RecyclerView>
 
-        </android.support.v4.widget.NestedScrollView>
+    <ImageView
+        android:id="@+id/luffy_image"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_75sdp"
+        android:src="@drawable/luffy_not_found"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        />
 
-    </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:id="@+id/luffy_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:textSize="20sp"
+        android:layout_below="@+id/luffy_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:visibility="gone"
+        />
+
+<!--        </android.support.v4.widget.NestedScrollView>-->
+
+<!--    </android.support.design.widget.AppBarLayout>-->
 
 </RelativeLayout>

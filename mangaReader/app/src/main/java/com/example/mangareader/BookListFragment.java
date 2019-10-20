@@ -36,7 +36,7 @@ public class BookListFragment extends Fragment {
     List<BookModel> lstBooks;
     RecyclerView myrecyclerview;
     BookAdapter myAdapter;
-    String email = "";
+    String email;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +61,7 @@ public class BookListFragment extends Fragment {
         toolbar.setTitle("All Books");
 
         HashMap<String, String> user = sessionManager.getUserDetails();
-        email = user.get(sessionManager.EMAIL);
+        email = user.get(SessionManager.EMAIL);
         String profile_photo_link = user.get(sessionManager.PROFILE_PHOTO);
 
         lstBooks = new ArrayList<>();

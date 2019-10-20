@@ -61,7 +61,7 @@ public class SingleBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_book);
 
         HashMap<String, String> user = sessionManager.getUserDetails();
-        final String mEmail = user.get(sessionManager.EMAIL);
+        final String mEmail = user.get(SessionManager.EMAIL);
 
         book_tvtitle = (TextView) findViewById(R.id.book_txttitle);
         book_tvcategory = (TextView) findViewById(R.id.book_txtcategory);
@@ -126,7 +126,7 @@ public class SingleBookActivity extends AppCompatActivity {
             book_btnFavourite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Floating Button is clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Floating Button is clicked", Toast.LENGTH_SHORT).show();
                     addFavouriteBook(mEmail, book_id);
                 }
             });

@@ -15,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -34,6 +36,8 @@ import static com.example.mangareader.Constants.url_recent_mangas;
 
 public class recentFragment extends Fragment {
 
+    ImageView luffy_image;
+    TextView luffy_text;
     RecyclerView recyclerView;
     comicAdapter adapter;
     ArrayList<comicModel> comicList;
@@ -63,10 +67,21 @@ public class recentFragment extends Fragment {
 
 //        View view =  inflater.inflate(R.layout.fragment_recent, container, false);
 
+        recyclerView = view.findViewById(R.id.rv);
+        luffy_image = view.findViewById(R.id.luffy_image);
+        luffy_text = view.findViewById(R.id.luffy_text);
+
         if (!sessionManager.isLoggin()){
+
+            recyclerView.setVisibility(View.GONE);
+            luffy_image.setVisibility(View.VISIBLE);
+            luffy_text.setVisibility(View.VISIBLE);
+
+            luffy_text.setText("You need to login to see what you were reading.\nNo recent found!!!");
+
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("IMPORTANT!!!")
-                    .setMessage("You need to login to see which manga you have recently viewed")
+            builder.setTitle("OOPS!!!")
+                    .setMessage("You need to login to see which manga you have recently read")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -82,7 +97,6 @@ public class recentFragment extends Fragment {
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(sessionManager.EMAIL);
 
-        recyclerView = view.findViewById(R.id.rv);
 //        recentToolbar = view.findViewById(R.id.recentToolbar);
 //        recentToolbar.setTitle("Recent");
 
@@ -130,26 +144,42 @@ public class recentFragment extends Fragment {
 //System.out.println(jsonObject1.getString("success"));
                     String success = jsonObject1.getString("success");
                     if (success.equals("true")){
-                        for (int i = 0; i < jsonArray.length(); i++){
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            String title = jsonObject2.getString("title");
-                            String cover_photo = jsonObject2.getString("cover_picture");
-                            String description = jsonObject2.getString("description");
-                            String id_manga = jsonObject2.getString("manga_id");
+                        if (jsonArray.length()==0){
+                            recyclerView.setVisibility(View.GONE);
+                            luffy_image.setVisibility(View.VISIBLE);
+                            luffy_text.setVisibility(View.VISIBLE);
+
+                            luffy_text.setText("No manga has been read now.\n Read manga to see which manga you have read recently");
+                        }
+                        else {
+
+                            recyclerView.setVisibility(View.VISIBLE);
+                            luffy_image.setVisibility(View.GONE);
+                            luffy_text.setVisibility(View.GONE);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                                    String title = jsonObject2.getString("title");
+                                    String cover_photo = jsonObject2.getString("cover_picture");
+                                    String description = jsonObject2.getString("description");
+                                    String id_manga = jsonObject2.getString("manga_id");
 //                            String favourite = jsonObject1.getString("favourite");
 
-                            String cover_photo_path = main_path+cover_photo;
+                                    String cover_photo_path = main_path + cover_photo;
 
-                            System.out.println("title : "+title+" cover_photo : "+cover_photo_path+ " description : "+description+ " id_manga : "+id_manga);
+                                    System.out.println("title : " + title + " cover_photo : " + cover_photo_path + " description : " + description + " id_manga : " + id_manga);
 
 //                            you have to change here
-                            String favourite = "TRUE";
+                                    String favourite = "TRUE";
 
-                            comicList.add(new comicModel(cover_photo_path, title, description, id_manga, favourite));
+                                    comicList.add(new comicModel(cover_photo_path, title, description, id_manga, favourite));
+                                }
 
+                            adapter.notifyDataSetChanged();
                         }
-                        adapter.notifyDataSetChanged();
                     }
 
                 } catch (JSONException e) {

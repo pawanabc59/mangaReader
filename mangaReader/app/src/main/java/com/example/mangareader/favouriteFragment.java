@@ -15,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -37,6 +39,8 @@ public class favouriteFragment extends Fragment {
 
 
     String static_url = main_path;
+    ImageView conan_image;
+    TextView conan_text;
     Context thisContext;
     List<comic> lstComic;
     RecyclerView myrecyclerview;
@@ -65,9 +69,20 @@ public class favouriteFragment extends Fragment {
 
         View view = localInflater.inflate(R.layout.fragment_favourite, container, false);
 
+        myrecyclerview = view.findViewById(R.id.recyclerId);
+        conan_image = view.findViewById(R.id.conan_image);
+        conan_text = view.findViewById(R.id.conan_text);
+
         if (!sessionManager.isLoggin()){
+
+            myrecyclerview.setVisibility(View.GONE);
+            conan_image.setVisibility(View.VISIBLE);
+            conan_text.setVisibility(View.VISIBLE);
+
+            conan_text.setText("You need to Login to save mangas to favourite.\n No Favourites is added");
+
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("IMPORTANT!!!")
+            builder.setTitle("OOPS!!!")
                     .setMessage("You need to Login to Put your mangas in to favourite and to see them")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -88,8 +103,6 @@ public class favouriteFragment extends Fragment {
 
         HashMap<String, String> user = sessionManager.getUserDetails();
         String email = user.get(sessionManager.EMAIL);
-
-        myrecyclerview = view.findViewById(R.id.recyclerId);
 
         lstComic = new ArrayList<>();
 //        lstComic.add(new comic("One Piece", "Category Comic", "Description Comic", R.drawable.one_piece));
@@ -143,26 +156,39 @@ public class favouriteFragment extends Fragment {
 
 //                        Toast.makeText(getContext(),"Favourites Mangas", Toast.LENGTH_SHORT).show();
 
-                        for (int i = 0 ; i < jsonArray.length(); i++){
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                        if (jsonArray.length() == 0){
+                            conan_image.setVisibility(View.VISIBLE);
+                            conan_text.setVisibility(View.VISIBLE);
+                            myrecyclerview.setVisibility(View.GONE);
 
-                            String title = jsonObject2.getString("title");
-                            String cover_photo = jsonObject2.getString("cover_picture");
-                            String description = jsonObject2.getString("description");
-                            String manga_id = jsonObject2.getString("manga_id");
-                            String favourite = "TRUE";
-
-                            String thumbnail = static_url+cover_photo;
-
-                            lstComic.add(new comic(title, "Fun", description, thumbnail, manga_id, favourite));
-
-
+                            conan_text.setText("No manga is added to favourites!!!");
                         }
+                        else {
+
+                            conan_text.setVisibility(View.GONE);
+                            conan_image.setVisibility(View.GONE);
+                            myrecyclerview.setVisibility(View.VISIBLE);
+                            
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                                String title = jsonObject2.getString("title");
+                                String cover_photo = jsonObject2.getString("cover_picture");
+                                String description = jsonObject2.getString("description");
+                                String manga_id = jsonObject2.getString("manga_id");
+                                String favourite = "TRUE";
+
+                                String thumbnail = static_url + cover_photo;
+
+                                lstComic.add(new comic(title, "Fun", description, thumbnail, manga_id, favourite));
+
+                            }
 
 //                        This is to set the adapter such that it notifies every time the data is changed. If not written then the data would not show.
-                        myAdapter.notifyDataSetChanged();
+                            myAdapter.notifyDataSetChanged();
 
-
+                        }
 
                     }
 

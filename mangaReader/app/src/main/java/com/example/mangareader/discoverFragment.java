@@ -164,9 +164,6 @@ public class discoverFragment extends Fragment {
         timer.scheduleAtFixedRate(new MyTimerTask(), 2000, 2000);
 
 
-
-
-
 //
         hot_updates_comics = new ArrayList<>();
         recommended_comics = new ArrayList<>();

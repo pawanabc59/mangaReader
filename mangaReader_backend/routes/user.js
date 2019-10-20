@@ -121,7 +121,7 @@ router.post('/favourite_book/add', (req, res) => {
 })
 
 router.post('/favourite_book/remove', (req, res) => {
-  database.removeFavouriteBook(req.body.email_id, req.body.manga_id, (err, result) => {
+  database.removeFavouriteBook(req.body.email_id, req.body.book_id, (err, result) => {
     if (err) {
       res.json({ success: 'false' })
     } else {
