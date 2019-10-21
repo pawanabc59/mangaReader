@@ -95,6 +95,7 @@ public class comic_activity extends AppCompatActivity {
         tvrating = findViewById(R.id.ratings);
         comic_rating = findViewById(R.id.comic_rating);
 
+        comic_rating.setEnabled(false);
         comic_rating.setRating((float) 4.5);
         tvrating.setText("Rating : 4.5");
 //        comic_rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
@@ -126,7 +127,7 @@ public class comic_activity extends AppCompatActivity {
         tvdescription.setText(Description);
 //        img.setImageResource(image);
 
-        Picasso.get().load(image).resize(10,10).into(backgroundImage);
+        Picasso.get().load(image).resize(5,5).into(backgroundImage);
 
         Picasso.get().load(image).into(img);
 
@@ -196,7 +197,6 @@ public class comic_activity extends AppCompatActivity {
         recyclerView.setLayoutManager(rvLiLayoutManager);
         recyclerView.setAdapter(adapter);
 
-
     }
 
     private void addFavourite(String mEmail, String manga_id){
@@ -226,7 +226,8 @@ public class comic_activity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
             }
 

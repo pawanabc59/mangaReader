@@ -1,7 +1,12 @@
 package com.example.mangareader;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -52,32 +57,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setTheme(R.style.AppTheme);
         }
 
-        setContentView(R.layout.activity_main);
+        if (!isConnected()){
+            new AlertDialog.Builder(this)
+                    .setTitle("Internet Connectivity Problem!!!")
+                    .setMessage("Please check your internet connection.")
+                    .setPositiveButton("Close App", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    }).show();
+        }
+        else {
+            setContentView(R.layout.activity_main);
 
-        permissionManager = new PermissionManager() {};
-        permissionManager.checkAndRequestPermissions(this);
+            permissionManager = new PermissionManager() {
+            };
+            permissionManager.checkAndRequestPermissions(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
 //        sessionManager.checkLogin();
 
-        HashMap<String, String> user = sessionManager.getUserDetails();
-        String mEmail = user.get(sessionManager.EMAIL);
-        String profile_photo_link = user.get(sessionManager.PROFILE_PHOTO);
+            HashMap<String, String> user = sessionManager.getUserDetails();
+            String mEmail = user.get(sessionManager.EMAIL);
+            String profile_photo_link = user.get(sessionManager.PROFILE_PHOTO);
 
 //        RelativeLayout relativeLayout = findViewById(R.id.layout_activity_main);
-        NavigationView navigationView1 = findViewById(R.id.nav_view);
-        LayoutInflater layoutInflater = getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.nav_header, navigationView1, false);
+            NavigationView navigationView1 = findViewById(R.id.nav_view);
+            LayoutInflater layoutInflater = getLayoutInflater();
+            View view = layoutInflater.inflate(R.layout.nav_header, navigationView1, false);
 
-        nav_profile_photo = view.findViewById(R.id.nav_profile_photo);
-        nav_username = view.findViewById(R.id.nav_username);
+            nav_profile_photo = view.findViewById(R.id.nav_profile_photo);
+            nav_username = view.findViewById(R.id.nav_username);
 
-        Picasso.get().load(main_path + profile_photo_link).error(R.drawable.luffy_icon).into(nav_profile_photo);
-        nav_username.setText(mEmail);
+            Picasso.get().load(main_path + profile_photo_link).error(R.drawable.luffy_icon).into(nav_profile_photo);
+            nav_username.setText(mEmail);
 
-        navigationView1.addView(view);
+            navigationView1.addView(view);
 
 //        secondActivity = findViewById(R.id.goToSecond);
 
@@ -93,20 +111,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //        sessionManager.checkLogin();
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+            drawerLayout = findViewById(R.id.drawer_layout);
+            NavigationView navigationView = findViewById(R.id.nav_view);
 
-        navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawerLayout.addDrawerListener(toggle);
+            toggle.syncState();
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+            BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+            bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new discoverFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new discoverFragment()).commit();
 
+        }
+
+    }
+
+    private boolean isConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo !=null && networkInfo.isConnected();
     }
 
 //    @Override

@@ -337,7 +337,7 @@ System.out.println(hot_updates);
                 } catch (JSONException e) {
                     Toast.makeText(getContext(), "Manga Error : " +e.toString(), Toast.LENGTH_SHORT).show();
                     System.out.println(e.toString());
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
 
             }
@@ -346,7 +346,6 @@ System.out.println(hot_updates);
             public void onErrorResponse(VolleyError error) {
 
                 Toast.makeText(getContext(), "Manga Loading Error : " +error.toString(), Toast.LENGTH_SHORT).show();
-
 
             }
         });

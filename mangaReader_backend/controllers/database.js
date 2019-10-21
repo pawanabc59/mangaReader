@@ -67,8 +67,14 @@ function getMangas (cb) {
   })
 }
 
-function getBooks (cb) {
-  var sql = 'select * from book order by book_title'
+function getBooks (email_id,cb) {
+  // var sql = 'select * from book order by book_title'
+  var sql = 'SELECT book.*,IF(fav.email IS NULL, "FALSE", "TRUE") as favourite_book\
+              FROM book\
+             LEFT JOIN (SELECT *from book_favourites where email = "' + email_id + '")\
+             as fav\
+             ON book.book_id = fav.book_id\
+             order by book_title'
   conn.query(sql, function (err, result) {
     cb(err, result)
   })

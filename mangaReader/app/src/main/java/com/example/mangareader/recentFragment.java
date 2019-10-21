@@ -183,7 +183,10 @@ public class recentFragment extends Fragment {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
+
                 }
             }
 

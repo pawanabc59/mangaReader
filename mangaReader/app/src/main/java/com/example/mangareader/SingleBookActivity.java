@@ -183,7 +183,8 @@ public class SingleBookActivity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
             }
 
@@ -225,7 +226,8 @@ public class SingleBookActivity extends AppCompatActivity {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
             }
 

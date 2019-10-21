@@ -1,5 +1,6 @@
 package com.example.mangareader;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -16,16 +17,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 import static com.example.mangareader.Constants.main_path;
+import static com.example.mangareader.Constants.url_add_favourites;
+import static com.example.mangareader.Constants.url_post_user_rating;
 
 public class PDFViewer extends AppCompatActivity {
 
@@ -35,6 +45,7 @@ public class PDFViewer extends AppCompatActivity {
     FloatingActionButton btnrating;
     private ProgressBar pdf_loading;
     private RatingBar  chapterRating;
+    SessionManager sessionManager;
     String manga_url = main_path;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -42,6 +53,11 @@ public class PDFViewer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfviewer);
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        final String email = user.get(sessionManager.EMAIL);
 
         Intent intent = getIntent();
         String chapter_name =  intent.getExtras().getString("Chapter_Name");
@@ -99,6 +115,7 @@ public class PDFViewer extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(PDFViewer.this,"Rating is done!", Toast.LENGTH_SHORT);
+                        upload_user_rating(email);
                         alertDialog.dismiss();
                     }
                 });
@@ -116,6 +133,44 @@ public class PDFViewer extends AppCompatActivity {
         });
 
         new RetrievePDFStream().execute(manga_url+chapter_path);
+
+    }
+
+    private void upload_user_rating(String email){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        final JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("email_id", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_post_user_rating, new ConnectionManager.VolleyCallback() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    String success = jsonObject1.getString("success");
+
+                    if (success.equals("true")){
+                        Toast.makeText(getApplicationContext(),"Rating Added", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(),"Some Error has Come : " + error, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 

@@ -193,7 +193,10 @@ public class favouriteFragment extends Fragment {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+
+//                    Maybe by adding below line i.e e.printStackTrace(); will cause application to crash if this get executed.
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                     Toast.makeText(getContext(), "Mangas not Found : " + e, Toast.LENGTH_SHORT).show();
                 }
             }

@@ -166,7 +166,8 @@ public class FavouriteBookFragment extends Fragment {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                     Toast.makeText(getContext(), "Books not Found : " + e, Toast.LENGTH_SHORT).show();
                 }
             }

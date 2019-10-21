@@ -122,7 +122,8 @@ public class LoginFragment extends Fragment {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.account_fragment, fragment);
                     fragmentTransaction.commit();
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
 
             }

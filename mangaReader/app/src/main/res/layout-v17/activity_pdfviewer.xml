@@ -44,14 +44,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/pdfview"
-        android:layout_marginTop="@dimen/_55sdp"
+        android:layout_marginTop="@dimen/_44sdp"
         >
 
         <ProgressBar
             android:id="@+id/pdf_loading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_270sdp"
+            android:layout_marginTop="@dimen/_220sdp"
             android:scaleX="3"
             android:scaleY="3"
             />
@@ -63,8 +63,8 @@
             android:backgroundTint="@color/lightPurple"
             android:src="@drawable/ic_rate"
             app:fabSize="normal"
-            android:layout_marginLeft="@dimen/_290sdp"
-            android:layout_marginTop="@dimen/_530sdp"
+            android:layout_marginLeft="@dimen/_235sdp"
+            android:layout_marginTop="@dimen/_360sdp"
             />
 
         <LinearLayout

@@ -217,7 +217,8 @@ public class ProfileFragment extends Fragment {
             jsonObject.put("email_id", email);
             jsonObject.put("profile_picture", photo);
         } catch (JSONException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println(e.toString());
         }
 
         ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_upload, new ConnectionManager.VolleyCallback() {

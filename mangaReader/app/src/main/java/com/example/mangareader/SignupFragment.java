@@ -124,6 +124,7 @@ public class SignupFragment extends Fragment {
                     loading.setVisibility(View.GONE);
                     btnsignup.setVisibility(View.VISIBLE);
 //                            e.printStackTrace();
+                    System.out.println(e.toString());
                 }
             }
 

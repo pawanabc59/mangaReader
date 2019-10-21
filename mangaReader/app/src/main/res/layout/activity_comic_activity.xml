@@ -109,8 +109,8 @@
                     android:scaleX="0.4"
                     android:scaleY="0.4"
                     android:layout_marginLeft="-73dp"
-                    android:outlineAmbientShadowColor="@color/white"
                     android:progressTint="@color/white"
+                    android:clickable="false"
                     />
 
                 <TextView

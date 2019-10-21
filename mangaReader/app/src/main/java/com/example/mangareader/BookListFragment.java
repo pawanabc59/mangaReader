@@ -116,13 +116,14 @@ public class BookListFragment extends Fragment {
                             String title = jsonObject2.getString("book_title");
                             String cover_photo = jsonObject2.getString("book_cover_picture");
                             String description = jsonObject2.getString("book_description");
-                            String manga_id = jsonObject2.getString("book_id");
+                            String book_id = jsonObject2.getString("book_id");
                             String book_path = jsonObject2.getString("book_path");
-                            String favourite = "FALSE";
+                            String favourite = jsonObject2.getString("favourite_book");
+//                            String favourite = "FALSE";
 
                             String thumbnail = main_path+cover_photo;
 
-                            lstBooks.add(new BookModel(title, "Fun", description, thumbnail, manga_id, favourite, book_path));
+                            lstBooks.add(new BookModel(title, "Fun", description, thumbnail, book_id, favourite, book_path));
 
                         }
                         myAdapter.notifyDataSetChanged();
@@ -131,7 +132,8 @@ public class BookListFragment extends Fragment {
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
                     Toast.makeText(getContext(), "Books not Found : " + e, Toast.LENGTH_SHORT).show();
                 }
             }
