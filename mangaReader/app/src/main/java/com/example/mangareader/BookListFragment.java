@@ -1,6 +1,8 @@
 package com.example.mangareader;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -134,13 +136,29 @@ public class BookListFragment extends Fragment {
                 } catch (JSONException e) {
 //                    e.printStackTrace();
                     System.out.println(e.toString());
-                    Toast.makeText(getContext(), "Books not Found : " + e, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Books not Found : " + e, Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Books Not Found")
+                            .setMessage("Sorry No books Found.")
+                            .setPositiveButton("Close App", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                }
+                            }).show();
                 }
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Books Loading Error : "+error, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Books Loading Error : "+error, Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
             }
         });
     }

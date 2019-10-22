@@ -175,7 +175,15 @@ public class FavouriteBookFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), "Book Loading Error : "+error, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Book Loading Error : "+error, Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
 
             }
         });

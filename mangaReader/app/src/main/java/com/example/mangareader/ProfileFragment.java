@@ -1,8 +1,10 @@
 package com.example.mangareader;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -252,7 +254,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), "Try Again " + error.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Try Again " + error.toString(), Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
 
             }
         });

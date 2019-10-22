@@ -1,5 +1,7 @@
 package com.example.mangareader;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -131,9 +133,17 @@ public class SignupFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), "Register failed "+ error.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Register failed "+ error.toString(), Toast.LENGTH_SHORT).show();
                 loading.setVisibility(View.GONE);
                 btnsignup.setVisibility(View.VISIBLE);
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
 
             }
         });
