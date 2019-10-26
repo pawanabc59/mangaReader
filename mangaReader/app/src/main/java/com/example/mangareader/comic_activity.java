@@ -51,6 +51,7 @@ public class comic_activity extends AppCompatActivity {
     SessionManager sessionManager;
     RecyclerView recyclerView;
     ArrayList<chapterModel> chapterList;
+    int chapter_id_final;
 
     chapterAdapter adapter;
 //    RelativeLayout relativeLayout;
@@ -333,13 +334,14 @@ public class comic_activity extends AppCompatActivity {
 
                             String chapter_name = jsonObject1.getString("title");
                             String chapter_number = jsonObject1.getString("chapter_no");
-                            String chapter_id = jsonObject1.getString("chapter_id");
+                            int chapter_id = jsonObject1.getInt("chapter_id");
                             String chapter_path = jsonObject1.getString("chapter_path");
 
+//                            chapter_id_final = chapter_id;
 
 //                            System.out.println("title : "+chapter_name+" chapter no : "+chapter_number);
 
-                            chapterList.add(new chapterModel("Chapter "+chapter_number+" - "+chapter_name, chapter_path));
+                            chapterList.add(new chapterModel("Chapter "+chapter_number+" - "+chapter_name, chapter_path, chapter_id));
 
                         }
                         adapter.notifyDataSetChanged();

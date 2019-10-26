@@ -52,6 +52,7 @@ public class chapterAdapter extends RecyclerView.Adapter<chapterAdapter.ViewHold
                 Intent intent = new Intent(mContext, PDFViewer.class);
                 intent.putExtra("Chapter_Name", mList.get(i).getChapter_name());
                 intent.putExtra("Chapter_path", chapter_url);
+                intent.putExtra("chapter_id", mList.get(i).getChapter_id());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 mContext.startActivity(intent);
             }

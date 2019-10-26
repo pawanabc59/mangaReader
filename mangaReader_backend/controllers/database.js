@@ -190,4 +190,19 @@ function getRecent (email_id, cb) {
 function addRecent (email_id, cb) {
 
 }
-module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite, getBooks, addFavouriteBook, removeFavouriteBook, getFavouriteBook }
+
+function getRating (email_id,chapter_id, cb) {
+  var sql = 'SELECT * from chapter_rating where email_id = "'+email_id+'" and chapter_id = '+chapter_id;
+  conn.query(sql, function (err, rating) {
+    cb(err, rating)
+  })
+}
+
+function setRating (email_id,chapter_id,rating, cb) {
+  var values = [email_id,chapter_id,rating]
+ var sql = 'INSERT INTO `chapter_rating`(`email_id`, `chapter_id`,`rating`) VALUES (?)'
+  conn.query(sql, [values], function (err, result) {
+    cb(err, result)
+  })
+}
+module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite, getBooks, addFavouriteBook, removeFavouriteBook, getFavouriteBook ,getRating ,setRating}

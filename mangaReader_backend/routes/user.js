@@ -161,6 +161,27 @@ router.post('/recent', (req, res) => {
   })
 })
 
+router.post('/chapter/rating', (req, res) => {
+  database.setRating(req.body.email_id,req.body.chapter_id,req.body.rating, (err, result) => {
+    if (err) {
+      res.json({ success: 'false',err:err })
+    } else {
+      res.json({ success: 'true', result: result })
+    }
+  })
+})
+
+router.post('/get/chapter/rating', (req, res) => {
+  database.getRating(req.body.email_id,req.body.chapter_id, (err, rating) => {
+    if (err) {
+      res.json({ success: 'false' ,err:err })
+    } else {
+      res.json({ success: 'true', rating: rating })
+    }
+  })
+})
+
+
 router.get('/index', function (req, res) {
   res.sendFile('', { root: './views' })
 })

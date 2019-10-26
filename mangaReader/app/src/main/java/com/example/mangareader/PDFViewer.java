@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +37,8 @@ import java.util.HashMap;
 
 import static com.example.mangareader.Constants.main_path;
 import static com.example.mangareader.Constants.url_add_favourites;
-import static com.example.mangareader.Constants.url_post_user_rating;
+import static com.example.mangareader.Constants.url_get_user_rating;
+import static com.example.mangareader.Constants.url_set_user_rating;
 
 public class PDFViewer extends AppCompatActivity {
 
@@ -48,6 +50,8 @@ public class PDFViewer extends AppCompatActivity {
     private RatingBar  chapterRating;
     SessionManager sessionManager;
     String manga_url = main_path;
+    float rating_count = 0;
+    float get_rating;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -63,8 +67,9 @@ public class PDFViewer extends AppCompatActivity {
         Intent intent = getIntent();
         String chapter_name =  intent.getExtras().getString("Chapter_Name");
         String chapter_path = intent.getExtras().getString("Chapter_path");
+        final int chapter_id = intent.getExtras().getInt("chapter_id");
 
-        System.out.println("book path is : " +chapter_path);
+//        System.out.println("book path is : " +chapter_path);
 
         pdfView = (PDFView) findViewById(R.id.pdfview);
         toolbar = (Toolbar) findViewById(R.id.pdfToolbar);
@@ -89,65 +94,79 @@ public class PDFViewer extends AppCompatActivity {
 //            }
 //        });
 
-        btnrating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if(sessionManager.isLoggin()) {
+            btnrating.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                final AlertDialog.Builder alert = new AlertDialog.Builder(PDFViewer.this);
-                View mView =getLayoutInflater().inflate(R.layout.rating_dialogue, null);
+                    rating_count = get_user_rating(email, chapter_id);
 
-                Button btnCancel = mView.findViewById(R.id.btnrating_cancel);
-                Button btnRate = mView.findViewById(R.id.btnrating_rate);
-                RatingBar ratingBar = mView.findViewById(R.id.chapter_rating);
-                final TextView txtRating = mView.findViewById(R.id.txtchapter_rating);
+                    final AlertDialog.Builder alert = new AlertDialog.Builder(PDFViewer.this);
+                    View mView = getLayoutInflater().inflate(R.layout.rating_dialogue, null);
 
-                alert.setView(mView);
+                    Button btnCancel = mView.findViewById(R.id.btnrating_cancel);
+                    Button btnRate = mView.findViewById(R.id.btnrating_rate);
+                    RatingBar ratingBar = mView.findViewById(R.id.chapter_rating);
+                    final TextView txtRating = mView.findViewById(R.id.txtchapter_rating);
 
-                final AlertDialog alertDialog = alert.create();
+//                try to put this line below to check if the rating not showing first time problem is there or not.
+                    alert.setView(mView);
 
-                ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-                    @Override
-                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                        txtRating.setText("Rating : "+rating);
+                    final AlertDialog alertDialog = alert.create();
+
+                    if (rating_count == 0) {
+                        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                            @Override
+                            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                                txtRating.setText("Rating : " + rating);
+                                rating_count = rating;
+                            }
+                        });
+                    } else {
+                        ratingBar.setRating(rating_count);
+                        ratingBar.setEnabled(false);
+                        txtRating.setText("Rating : " + rating_count);
                     }
-                });
 
-                btnRate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(PDFViewer.this,"Rating is done!", Toast.LENGTH_SHORT);
-                        upload_user_rating(email);
-                        alertDialog.dismiss();
-                    }
-                });
+                    btnRate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(PDFViewer.this, "Rating is done!", Toast.LENGTH_SHORT);
+                            upload_user_rating(email, chapter_id, rating_count);
+                            alertDialog.dismiss();
+                        }
+                    });
 
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
 
-                alertDialog.show();
+                    alertDialog.show();
 
-            }
-        });
+                }
+            });
+        }
 
         new RetrievePDFStream().execute(manga_url+chapter_path);
 
     }
 
-    private void upload_user_rating(String email){
+    private void upload_user_rating(String email,int chapter_id,float rating_count){
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         final JSONObject jsonObject = new JSONObject();
         try{
             jsonObject.put("email_id", email);
+            jsonObject.put("chapter_id", chapter_id);
+            jsonObject.put("rating", rating_count);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_post_user_rating, new ConnectionManager.VolleyCallback() {
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_set_user_rating, new ConnectionManager.VolleyCallback() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onSuccessResponse(String response) {
@@ -181,6 +200,62 @@ public class PDFViewer extends AppCompatActivity {
             }
         });
 
+    }
+
+    private float get_user_rating(String email,int chapter_id){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        final JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("email_id", email);
+            jsonObject.put("chapter_id", chapter_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_get_user_rating, new ConnectionManager.VolleyCallback() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    String success = jsonObject1.getString("success");
+//                    JSONObject jsonObject2 = jsonObject1.getJSONObject("rating");
+                    JSONArray jsonArray = jsonObject1.getJSONArray("rating");
+
+                    if (success.equals("true")){
+                        Toast.makeText(getApplicationContext(),"Already rated", Toast.LENGTH_SHORT).show();
+                        for (int i = 0;i<jsonArray.length(); i++){
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                            get_rating = Float.parseFloat(jsonObject2.getString("rating"));
+                        }
+                    }
+
+                } catch (JSONException e) {
+//                    e.printStackTrace();
+                    get_rating = 0;
+                    System.out.println(e.toString());
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+//                Toast.makeText(getApplicationContext(),"Some Error has Come : " + error, Toast.LENGTH_SHORT).show();
+                new android.app.AlertDialog.Builder(getApplicationContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
+
+            }
+        });
+
+        return get_rating;
     }
 
     class RetrievePDFStream extends AsyncTask<String, Void, InputStream>{

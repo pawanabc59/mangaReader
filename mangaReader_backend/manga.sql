@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2019 at 09:48 AM
+-- Generation Time: Oct 26, 2019 at 08:26 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -66,7 +66,11 @@ CREATE TABLE `book_favourites` (
 
 INSERT INTO `book_favourites` (`email`, `book_id`) VALUES
 ('pawankm4587@gmail.com', 2),
-('pawankm4587@gmail.com', 3);
+('pawankm4587@gmail.com', 3),
+('deepak@gmail.com', 2),
+('pk@gmail.com', 3),
+('pk@gmail.com', 4),
+('pk@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -112,6 +116,26 @@ INSERT INTO `chapters` (`chapter_id`, `manga_id`, `title`, `date_of_origin`, `ch
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `chapter_rating`
+--
+
+CREATE TABLE `chapter_rating` (
+  `chapter_id` int(10) DEFAULT NULL,
+  `email_id` varchar(30) DEFAULT NULL,
+  `rating` float(3,1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chapter_rating`
+--
+
+INSERT INTO `chapter_rating` (`chapter_id`, `email_id`, `rating`) VALUES
+(1, 'jayesh@gmail.com', 5.0),
+(2, 'jayesh@gmail.com', 4.5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `favourites`
 --
 
@@ -126,11 +150,13 @@ CREATE TABLE `favourites` (
 
 INSERT INTO `favourites` (`email_id`, `manga_id`) VALUES
 ('pawankm4587@gmail.com', 1),
-('deepak@gmail.com', 1),
 ('deepak@gmail.com', 2),
 ('pawankm4587@gmail.com', 4),
 ('pawankm4587@gmail.com', 3),
-('nilesh.dbit@gmailcom', 2);
+('nilesh.dbit@gmailcom', 2),
+('deepak@gmail.com', 1),
+('pk@gmail.com', 1),
+('pk@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -428,7 +454,94 @@ INSERT INTO `recent` (`email_id`, `manga_id`, `at_time`) VALUES
 ('pawankm4587@gmail.com', 1, '2019-10-02 21:39:24'),
 ('pawankm4587@gmail.com', 2, '2019-10-02 21:39:34'),
 ('pawankm4587@gmail.com', 2, '2019-10-02 21:39:41'),
-('pawankm4587@gmail.com', 2, '2019-10-02 21:39:45');
+('pawankm4587@gmail.com', 2, '2019-10-02 21:39:45'),
+('deepak@gmail.com', 1, '2019-10-07 16:27:55'),
+('deepak@gmail.com', 1, '2019-10-07 16:27:59'),
+('deepak@gmail.com', 1, '2019-10-07 16:28:05'),
+('deepak@gmail.com', 1, '2019-10-17 00:20:58'),
+('deepak@gmail.com', 1, '2019-10-17 00:21:08'),
+('deepak@gmail.com', 1, '2019-10-17 00:21:14'),
+(NULL, 1, '2019-10-17 00:22:44'),
+(NULL, 2, '2019-10-17 01:10:42'),
+(NULL, 1, '2019-10-17 01:10:48'),
+(NULL, 5, '2019-10-17 01:11:05'),
+(NULL, 3, '2019-10-17 01:13:16'),
+(NULL, 3, '2019-10-17 01:14:20'),
+('pk@gmail.com', 1, '2019-10-17 13:31:26'),
+('pk@gmail.com', 2, '2019-10-17 13:31:40'),
+('pk@gmail.com', 2, '2019-10-17 13:32:43'),
+('pk@gmail.com', 2, '2019-10-17 13:32:43'),
+('pk@gmail.com', 1, '2019-10-17 13:32:47'),
+('pk@gmail.com', 1, '2019-10-17 13:32:48'),
+('pk@gmail.com', 5, '2019-10-17 13:33:05'),
+('pk@gmail.com', 1, '2019-10-17 13:46:52'),
+('pk@gmail.com', 5, '2019-10-17 13:46:58'),
+('pk@gmail.com', 2, '2019-10-17 13:47:02'),
+('pk@gmail.com', 3, '2019-10-17 13:47:06'),
+('pk@gmail.com', 5, '2019-10-17 13:47:08'),
+('pk@gmail.com', 4, '2019-10-17 13:47:11'),
+('pk@gmail.com', 2, '2019-10-17 13:47:45'),
+('pk@gmail.com', 1, '2019-10-17 13:47:54'),
+('pk@gmail.com', 1, '2019-10-17 13:48:24'),
+('pk@gmail.com', 5, '2019-10-17 13:48:30'),
+('pk@gmail.com', 2, '2019-10-17 13:48:32'),
+('pk@gmail.com', 4, '2019-10-17 13:48:34'),
+('pk@gmail.com', 3, '2019-10-17 13:48:37'),
+('pk@gmail.com', 1, '2019-10-17 13:48:41'),
+('pk@gmail.com', 4, '2019-10-17 14:05:49'),
+('pk@gmail.com', 3, '2019-10-17 14:05:51'),
+('pk@gmail.com', 2, '2019-10-17 14:05:55'),
+('pk@gmail.com', 1, '2019-10-17 14:05:57'),
+('pk@gmail.com', 2, '2019-10-17 14:05:58'),
+('pk@gmail.com', 2, '2019-10-17 14:06:06'),
+('pk@gmail.com', 4, '2019-10-17 14:06:23'),
+('pk@gmail.com', 4, '2019-10-17 14:06:31'),
+('jayesh@gmail.com', 1, '2019-10-20 19:22:44'),
+('jayesh@gmail.com', 2, '2019-10-20 19:22:46'),
+('jayesh@gmail.com', 2, '2019-10-20 19:24:33'),
+('jayesh@gmail.com', 1, '2019-10-20 19:25:35'),
+('jayesh@gmail.com', 1, '2019-10-20 19:25:43'),
+('jayesh@gmail.com', 3, '2019-10-20 19:25:53'),
+('jayesh@gmail.com', 5, '2019-10-20 19:26:08'),
+('jayesh@gmail.com', 5, '2019-10-20 19:26:18'),
+('jayesh@gmail.com', 3, '2019-10-20 19:26:20'),
+('jayesh@gmail.com', 5, '2019-10-20 19:26:27'),
+('jayesh@gmail.com', 2, '2019-10-20 19:40:17'),
+('jayesh@gmail.com', 2, '2019-10-20 19:44:44'),
+('jayesh@gmail.com', 2, '2019-10-20 19:45:09'),
+('jayesh@gmail.com', 2, '2019-10-20 19:53:51'),
+('jayesh@gmail.com', 2, '2019-10-20 20:08:46'),
+('jayesh@gmail.com', 2, '2019-10-20 20:08:54'),
+('jayesh@gmail.com', 2, '2019-10-21 19:54:19'),
+('jayesh@gmail.com', 1, '2019-10-21 19:54:42'),
+('jayesh@gmail.com', 1, '2019-10-21 19:56:59'),
+('jayesh@gmail.com', 1, '2019-10-21 19:59:17'),
+('jayesh@gmail.com', 1, '2019-10-21 19:59:42'),
+('jayesh@gmail.com', 1, '2019-10-21 20:00:05'),
+('jayesh@gmail.com', 1, '2019-10-21 20:03:25'),
+('jayesh@gmail.com', 1, '2019-10-21 20:03:54'),
+('jayesh@gmail.com', 1, '2019-10-21 20:05:09'),
+('jayesh@gmail.com', 1, '2019-10-21 20:06:42'),
+('jayesh@gmail.com', 1, '2019-10-21 20:09:19'),
+('jayesh@gmail.com', 1, '2019-10-21 20:31:04'),
+('jayesh@gmail.com', 1, '2019-10-21 21:23:59'),
+('jayesh@gmail.com', 3, '2019-10-21 21:24:05'),
+('jayesh@gmail.com', 2, '2019-10-21 21:24:10'),
+('jayesh@gmail.com', 2, '2019-10-21 21:24:15'),
+('jayesh@gmail.com', 1, '2019-10-21 21:24:17'),
+('jayesh@gmail.com', 3, '2019-10-21 21:24:25'),
+('jayesh@gmail.com', 2, '2019-10-21 21:24:29'),
+('pk@gmail.com', 1, '2019-10-23 20:13:55'),
+('pk@gmail.com', 1, '2019-10-23 20:15:53'),
+('pk@gmail.com', 1, '2019-10-23 20:16:04'),
+('pk@gmail.com', 1, '2019-10-23 20:21:41'),
+('pk@gmail.com', 1, '2019-10-23 20:22:03'),
+('pk@gmail.com', 1, '2019-10-23 20:31:41'),
+('jayesh@gmail.com', 1, '2019-10-26 23:18:57'),
+('jayesh@gmail.com', 1, '2019-10-26 23:19:13'),
+('jayesh@gmail.com', 1, '2019-10-26 23:30:58'),
+('jayesh@gmail.com', 1, '2019-10-26 23:36:25'),
+('jayesh@gmail.com', 1, '2019-10-26 23:42:56');
 
 -- --------------------------------------------------------
 
@@ -449,9 +562,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `email_id`, `password`, `profile_picture`) VALUES
 (2, 'pawankm4587@gmail.com', '123', '/profile/pawankm4587@gmail.com.jpeg'),
-(3, 'deepak@gmail.com', '123', '/profile/deepak@gmail.com/deepak@gmail.com.jpeg'),
-(4, 'akash@gmail.com', 'akash', NULL),
-(5, 'nilesh.dbit@gmailcom', '123', NULL);
+(3, 'deepak@gmail.com', '123456', '/profile/deepak@gmail.com/deepak@gmail.com.jpeg'),
+(4, 'akash@gmail.com', 'akash', '/profile/akash@gmail.com/akash@gmail.com.jpeg'),
+(5, 'nilesh.dbit@gmailcom', '123', NULL),
+(6, 'pk#gmailcom', '123456', NULL),
+(7, 'pk@gmail.com', '123456', '/profile/pk@gmail.com/pk@gmail.com.jpeg'),
+(8, 'jayesh@gmail.com', '123456', '/profile/jayesh@gmail.com/jayesh@gmail.com.jpeg');
 
 --
 -- Indexes for dumped tables
@@ -469,6 +585,13 @@ ALTER TABLE `book`
 ALTER TABLE `chapters`
   ADD PRIMARY KEY (`chapter_id`),
   ADD KEY `manga_id` (`manga_id`);
+
+--
+-- Indexes for table `chapter_rating`
+--
+ALTER TABLE `chapter_rating`
+  ADD KEY `chapter_id` (`chapter_id`),
+  ADD KEY `email_id` (`email_id`);
 
 --
 -- Indexes for table `favourites`
@@ -523,7 +646,7 @@ ALTER TABLE `manga`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -534,6 +657,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `chapters`
   ADD CONSTRAINT `chapters_ibfk_1` FOREIGN KEY (`manga_id`) REFERENCES `manga` (`manga_id`);
+
+--
+-- Constraints for table `chapter_rating`
+--
+ALTER TABLE `chapter_rating`
+  ADD CONSTRAINT `chapter_rating_ibfk_1` FOREIGN KEY (`chapter_id`) REFERENCES `chapters` (`chapter_id`),
+  ADD CONSTRAINT `chapter_rating_ibfk_2` FOREIGN KEY (`email_id`) REFERENCES `users` (`email_id`);
 
 --
 -- Constraints for table `favourites`
