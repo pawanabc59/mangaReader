@@ -7,12 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewParent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+
+import com.example.mangareader.Adapters.IntroViewPagerAdapter;
+import com.example.mangareader.Models.ScreenItem;
 
 import java.util.ArrayList;
 import java.util.List;

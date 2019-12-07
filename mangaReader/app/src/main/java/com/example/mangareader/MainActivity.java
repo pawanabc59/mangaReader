@@ -1,6 +1,5 @@
 package com.example.mangareader;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,10 +25,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mangareader.Fragments.AccountFragment;
+import com.example.mangareader.Fragments.ProfileFragment;
+import com.example.mangareader.Fragments.discoverFragment;
+import com.example.mangareader.Fragments.favouriteFragment;
+import com.example.mangareader.Fragments.recentFragment;
 import com.karan.churi.PermissionManager.PermissionManager;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.example.mangareader.Constants.main_path;
@@ -160,9 +163,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         case R.id.nav_recent:
                             selectedFragment = new recentFragment();
                             break;
-                        case R.id.nav_download:
-                            selectedFragment = new downloadFragment();
-                            break;
+//                        case R.id.nav_download:
+//                            selectedFragment = new downloadFragment();
+//                            break;
                         case R.id.nav_account:
                             if (sessionManager.isLoggin()) {
                                 selectedFragment = new ProfileFragment();

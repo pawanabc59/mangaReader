@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_signup_frag_style"
-    tools:context=".SignupFragment"
+    tools:context=".Fragments.SignupFragment"
     android:paddingLeft="@dimen/_23sdp"
     >
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavouriteBookFragment">
+    tools:context=".Fragments.FavouriteBookFragment">
 
     <ImageView
         android:id="@+id/book_reading_woman"

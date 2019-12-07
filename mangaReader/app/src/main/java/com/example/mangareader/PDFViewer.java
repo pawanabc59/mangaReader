@@ -38,7 +38,9 @@ import java.util.HashMap;
 import static com.example.mangareader.Constants.main_path;
 import static com.example.mangareader.Constants.url_add_favourites;
 import static com.example.mangareader.Constants.url_get_user_rating;
+import static com.example.mangareader.Constants.url_get_user_rating_book;
 import static com.example.mangareader.Constants.url_set_user_rating;
+import static com.example.mangareader.Constants.url_set_user_rating_book;
 
 public class PDFViewer extends AppCompatActivity {
 
@@ -52,6 +54,8 @@ public class PDFViewer extends AppCompatActivity {
     String manga_url = main_path;
     float rating_count = 0;
     float get_rating;
+    int chapter_id;
+    String type,book_id;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -67,11 +71,20 @@ public class PDFViewer extends AppCompatActivity {
         Intent intent = getIntent();
         String chapter_name =  intent.getExtras().getString("Chapter_Name");
         String chapter_path = intent.getExtras().getString("Chapter_path");
-        final int chapter_id = intent.getExtras().getInt("chapter_id");
+        type = intent.getExtras().getString("type");
+        if (type.equals("manga")){
+            chapter_id = intent.getExtras().getInt("chapter_id");
+        }
+        else {
+            book_id = intent.getExtras().getString("book_id");
+        }
 
 //        System.out.println("book path is : " +chapter_path);
 
         pdfView = (PDFView) findViewById(R.id.pdfview);
+
+
+
         toolbar = (Toolbar) findViewById(R.id.pdfToolbar);
         pdf_loading = findViewById(R.id.pdf_loading);
         pdfPageNumber = findViewById(R.id.pdfPageNumber);
@@ -99,7 +112,16 @@ public class PDFViewer extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    rating_count = get_user_rating(email, chapter_id);
+                    System.out.println("Type : "+type);
+                    System.out.println("book Id : "+book_id);
+                    if (type.equals("manga")) {
+                        rating_count = get_user_rating(email, chapter_id);
+                        System.out.println("It comes to manga section");
+                    }
+                    else {
+                        rating_count = get_user_rating_book(email, book_id);
+                        System.out.println("It comes to book section");
+                    }
 
                     final AlertDialog.Builder alert = new AlertDialog.Builder(PDFViewer.this);
                     View mView = getLayoutInflater().inflate(R.layout.rating_dialogue, null);
@@ -122,20 +144,28 @@ public class PDFViewer extends AppCompatActivity {
                                 rating_count = rating;
                             }
                         });
+
+                        btnRate.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (type.equals("manga")) {
+                                    upload_user_rating(email, chapter_id, rating_count);
+                                    System.out.println("It comes to manga add rating");
+                                }
+                                else {
+                                    upload_user_rating_book(email, book_id, rating_count);
+                                    System.out.println("It comes to book add rating");
+                                }
+                                Toast.makeText(PDFViewer.this, "Rating is done!", Toast.LENGTH_SHORT);
+                                alertDialog.dismiss();
+                            }
+                        });
+
                     } else {
                         ratingBar.setRating(rating_count);
                         ratingBar.setEnabled(false);
                         txtRating.setText("Rating : " + rating_count);
                     }
-
-                    btnRate.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(PDFViewer.this, "Rating is done!", Toast.LENGTH_SHORT);
-                            upload_user_rating(email, chapter_id, rating_count);
-                            alertDialog.dismiss();
-                        }
-                    });
 
                     btnCancel.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -155,6 +185,8 @@ public class PDFViewer extends AppCompatActivity {
     }
 
     private void upload_user_rating(String email,int chapter_id,float rating_count){
+
+        System.out.println("email_id : "+email+" chapter_id : "+chapter_id+" rating : "+rating_count);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         final JSONObject jsonObject = new JSONObject();
@@ -202,7 +234,57 @@ public class PDFViewer extends AppCompatActivity {
 
     }
 
+    private void upload_user_rating_book(String email,String book_id,float rating_count){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        final JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("email_id", email);
+            jsonObject.put("book_id", book_id);
+            jsonObject.put("rating", rating_count);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_set_user_rating_book, new ConnectionManager.VolleyCallback() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    String success = jsonObject1.getString("success");
+
+                    if (success.equals("true")){
+                        Toast.makeText(getApplicationContext(),"Rating Added", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+//                    e.printStackTrace();
+                    System.out.println(e.toString());
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+//                Toast.makeText(getApplicationContext(),"Some Error has Come : " + error, Toast.LENGTH_SHORT).show();
+                new android.app.AlertDialog.Builder(getApplicationContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
+
+            }
+        });
+
+    }
+
     private float get_user_rating(String email,int chapter_id){
+
+        System.out.println("email_id : "+email+" chapter_id : "+chapter_id);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         final JSONObject jsonObject = new JSONObject();
@@ -224,11 +306,77 @@ public class PDFViewer extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject1.getJSONArray("rating");
 
                     if (success.equals("true")){
-                        Toast.makeText(getApplicationContext(),"Already rated", Toast.LENGTH_SHORT).show();
-                        for (int i = 0;i<jsonArray.length(); i++){
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                        if (jsonArray.length() != 0) {
+                            Toast.makeText(getApplicationContext(), "Already rated", Toast.LENGTH_SHORT).show();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            get_rating = Float.parseFloat(jsonObject2.getString("rating"));
+                                get_rating = Float.parseFloat(jsonObject2.getString("rating"));
+                            }
+                        }
+                        else{
+                            get_rating = 0;
+                        }
+                    }
+
+                } catch (JSONException e) {
+//                    e.printStackTrace();
+                    get_rating = 0;
+                    System.out.println(e.toString());
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+//                Toast.makeText(getApplicationContext(),"Some Error has Come : " + error, Toast.LENGTH_SHORT).show();
+                new android.app.AlertDialog.Builder(getApplicationContext())
+                        .setTitle("Server error!")
+                        .setMessage("Some issues with server has occurred, Please try again later.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
+
+            }
+        });
+
+        return get_rating;
+    }
+
+    private float get_user_rating_book(String email,String book_id){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        final JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("email_id", email);
+            jsonObject.put("book_id", book_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ConnectionManager.sendData(jsonObject.toString(), requestQueue, url_get_user_rating_book, new ConnectionManager.VolleyCallback() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    String success = jsonObject1.getString("success");
+//                    JSONObject jsonObject2 = jsonObject1.getJSONObject("rating");
+                    JSONArray jsonArray = jsonObject1.getJSONArray("rating");
+
+                    if (success.equals("true")){
+                        if (jsonArray.length() != 0) {
+                            Toast.makeText(getApplicationContext(), "Already rated", Toast.LENGTH_SHORT).show();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                                get_rating = Float.parseFloat(jsonObject2.getString("rating"));
+                            }
+                        }
+                        else{
+                            get_rating = 0;
                         }
                     }
 

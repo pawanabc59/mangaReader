@@ -19,11 +19,11 @@
         android:title="RECENT"
         />
 
-    <item
-        android:id="@+id/nav_download"
-        android:icon="@drawable/ic_download"
-        android:title="MY DOCUMENTS"
-        />
+<!--    <item-->
+<!--        android:id="@+id/nav_download"-->
+<!--        android:icon="@drawable/ic_download"-->
+<!--        android:title="MY DOCUMENTS"-->
+<!--        />-->
 
     <item
         android:id="@+id/nav_account"

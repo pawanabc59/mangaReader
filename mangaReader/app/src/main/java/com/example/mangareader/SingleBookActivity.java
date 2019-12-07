@@ -152,6 +152,8 @@ public class SingleBookActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(getApplicationContext(), PDFViewer.class);
                 intent1.putExtra("Chapter_Name", Title);
                 intent1.putExtra("Chapter_path", book_path);
+                intent1.putExtra("book_id", book_id);
+                intent1.putExtra("type", "book");
                 startActivity(intent1);
             }
         });

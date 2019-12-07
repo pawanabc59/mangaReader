@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/fragment_login_signup"
-        android:name="com.example.mangareader.LoginFragment"
+        android:name="com.example.mangareader.Fragments.LoginFragment"
         android:layout_width="290dp"
         android:layout_height="494dp"
         android:layout_alignParentEnd="true"
