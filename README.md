@@ -32,9 +32,11 @@
   - Hat tip to any third party library that is used.
   - Inspiration.
 
-# Author
+# Authors
   [Pawan Kumar Maurya](https://github.com/pawanabc59)
   
   [Pritesh Satpute](https://github.com/priteshsatpute)
   
   [Akash Hadwale](https://github.com/akki3737)
+  
+  [Deepak Paradkar](https://github.com/deepak1199)
