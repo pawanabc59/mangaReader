@@ -205,4 +205,19 @@ function setRating (email_id,chapter_id,rating, cb) {
     cb(err, result)
   })
 }
-module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite, getBooks, addFavouriteBook, removeFavouriteBook, getFavouriteBook ,getRating ,setRating}
+
+function getRatingBook (email_id,book_id, cb) {
+  var sql = 'SELECT * from book_rating where email_id = "'+email_id+'" and book_id = '+book_id;
+  conn.query(sql, function (err, rating) {
+    cb(err, rating)
+  })
+}
+
+function setRatingBook (email_id,book_id,rating, cb) {
+  var values = [email_id,book_id,rating]
+ var sql = 'INSERT INTO `book_rating`(`email_id`, `book_id`,`rating`) VALUES (?)'
+  conn.query(sql, [values], function (err, result) {
+    cb(err, result)
+  })
+}
+module.exports = { getRecent, getHomeFeed, getUser, newUser, setProfilePic, getMangas, getChaptersByMangaId, addFavrourite, removeFavrourite, getFavrourite, getBooks, addFavouriteBook, removeFavouriteBook, getFavouriteBook ,getRating ,setRating, getRatingBook, setRatingBook}

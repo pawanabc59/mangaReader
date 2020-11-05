@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2019 at 08:26 PM
+-- Generation Time: Nov 05, 2020 at 05:14 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -46,7 +46,7 @@ CREATE TABLE `book` (
 INSERT INTO `book` (`book_id`, `book_title`, `rating`, `ratings_count`, `date_of_origin`, `book_cover_picture`, `book_path`, `book_description`) VALUES
 (1, 'Half Girlfriend', 4, 30, '2019-09-27', '/book_covers/half_girlfriend.jpg', '/books/Half_Girlfriend.pdf', 'Madhav Jha, a rural boy from Dumraon, a village in Bihar, comes to meet the author, who is actually Chetan Bhagat, and leaves behind a few journals from his half-girlfriend, who he believes has died. Chetan Bhagat calls him up the next morning to hear his story. He starts by describing his trouble entering St. Stephens, as his English wasn\'t good enough. Being a good basketball player, Madhav gets finally through sports quota.\r\n\r\nThe rich and beautiful Riya Somani is a girl from Delhi, who is also selected through the sports quota. Madhav and Riya become close \'friends\' due to their association with basketball. Madhav wants to make her his girlfriend, but she refuses. He demands that they get physical. Offended by his obscene ultimatum ({|Deti hai to de, warna katle}}), Riya parts company with him and tells him not to talk to her anymore.\r\n\r\nA year later, Riya marries her childhood friend Rohan and settles in London, where Rohan has a big business. Finding Delhi unbearable on grounds o'),
 (2, 'Sacred Games', 5, 50, '2019-09-27', '/book_covers/Sacred_games.jpg', '/books/Sacred_Games.pdf', 'Sacred Games runs mostly on two parallel tracks, one winding through the criminal underground of Mumbai (then Bombay) in the 80s and 90s and the other through a tense modern-day hunt for the explanation behind a notorious dead gangster\'s bizarre final words. The only Sikh police inspector in the city is seemingly invited to pursue Mumbai\'s most legendary crime lord, Ganesh Gaitonde. Gaitonde reveals a harrowing timeline and a few hints of the identity of his collaborators before taking his own life. From there, we explore the forces that shaped Gaitonde into the dark figure he became and follow the police inspector as he tries to put his own life in order, solve a crime, and possibly save his city. Through interweaving narratives and voices, Sacred Games takes on even larger themes, from the wrenching violence of the 1947 partition of India to the specter of nuclear terrorism.'),
-(3, 'The Girl with the Dragon Tattoo', 4, 0, '2019-09-27', '/book_covers/the_girl_with_the_dragon_tattoo.jpg', '/books/The_Girl_with_the_Dragon_Tattoo.pdf', 'In December 2002, Mikael Blomkvist, publisher of the Swedish political magazine Millennium, loses a libel case involving allegations about billionaire industrialist Hans-Erik Wennerström. Blomkvist is sentenced to three months (deferred) in prison, and ordered to pay hefty damages and costs. Soon afterwards, he is invited to meet Henrik Vanger, the retired CEO of the Vanger Corporation, unaware that Vanger has checked into his personal and professional history; the investigation of Blomkvist\'s circumstances has been carried out by Lisbeth Salander, a brilliant but deeply troubled researcher and computer hacker.'),
+(3, 'The Girl with the Dragon Tattoo', 4, 10, '2019-09-27', '/book_covers/the_girl_with_the_dragon_tattoo.jpg', '/books/The_Girl_with_the_Dragon_Tattoo.pdf', 'In December 2002, Mikael Blomkvist, publisher of the Swedish political magazine Millennium, loses a libel case involving allegations about billionaire industrialist Hans-Erik Wennerström. Blomkvist is sentenced to three months (deferred) in prison, and ordered to pay hefty damages and costs. Soon afterwards, he is invited to meet Henrik Vanger, the retired CEO of the Vanger Corporation, unaware that Vanger has checked into his personal and professional history; the investigation of Blomkvist\'s circumstances has been carried out by Lisbeth Salander, a brilliant but deeply troubled researcher and computer hacker.'),
 (4, 'The Monk Who Sold His Ferrari', 4, 70, '2019-09-27', '/book_covers/the_monk_who_sold_his_ferrari.jpg', '/books/The_Monk_Who_Sold_His_Ferrari.pdf', 'In practical terms, Robin Sharma’s The Monk Who Sold His Ferrari is the story of Julian Mantle, a wildly successful attorney who suffers a massive heart attack in the courtroom due to his heavily unbalanced lifestyle.  Recovered, but facing a physical and spiritual crisis, Julian travels East in search of answers to easing the nagging sense that his life is somewhat lacking.  Several years later, upon his successful return, Julian shares his findings with another lawyer, destined for the same fate as he once experienced, to teach him the error of his ways.  That’s in practical terms.');
 
 -- --------------------------------------------------------
@@ -70,7 +70,30 @@ INSERT INTO `book_favourites` (`email`, `book_id`) VALUES
 ('deepak@gmail.com', 2),
 ('pk@gmail.com', 3),
 ('pk@gmail.com', 4),
-('pk@gmail.com', 2);
+('pk@gmail.com', 2),
+('jayesh@gmail.com', 2),
+('jayesh@gmail.com', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_rating`
+--
+
+CREATE TABLE `book_rating` (
+  `book_id` int(10) NOT NULL,
+  `email_id` varchar(30) NOT NULL,
+  `rating` float(3,1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book_rating`
+--
+
+INSERT INTO `book_rating` (`book_id`, `email_id`, `rating`) VALUES
+(3, 'jayesh@gmail.com', 5.0),
+(2, 'jayesh@gmail.com', 4.0),
+(4, 'jayesh@gmail.com', 5.0);
 
 -- --------------------------------------------------------
 
@@ -111,7 +134,25 @@ INSERT INTO `chapters` (`chapter_id`, `manga_id`, `title`, `date_of_origin`, `ch
 (17, 3, 'On that day', '2019-09-27', '/chapters/aot/aot2.pdf', 2),
 (18, 3, 'The Night of disbanding', '2019-09-27', '/chapters/aot/aot3.pdf', 3),
 (19, 3, 'Their first battle', '2019-09-27', '/chapters/aot/aot4.pdf', 4),
-(20, 3, 'The world of titans', '2019-09-27', '/chapters/aot/aot5.pdf', 5);
+(20, 3, 'The world of titans', '2019-09-27', '/chapters/aot/aot5.pdf', 5),
+(21, 6, 'The Heisei Holmes', '2020-11-04', '/chapters/detective_conan/dc1.pdf', 1),
+(22, 6, 'The Shrunken Detective', '2020-11-04', '/chapters/detective_conan/dc2.pdf', 2),
+(23, 6, 'The Left Out Detective', '2020-11-04', '/chapters/detective_conan/dc3.pdf', 3),
+(24, 7, 'Destroying Himself, Killing Oni', '2020-11-04', '/chapters/demon_slayer/ds1.pdf', 1),
+(25, 7, 'A Person Unknown', '2020-11-04', '/chapters/demon_slayer/ds2.pdf', 2),
+(26, 7, 'I Will Return Before Dawn', '2020-11-04', '/chapters/demon_slayer/ds3.pdf', 3),
+(27, 8, 'Naruto', '2020-11-04', '/chapters/naruto/naruto1.pdf', 1),
+(28, 8, 'Uzumaki Naruto', '2020-11-04', '/chapters/naruto/naruto2.pdf', 2),
+(29, 8, 'Ko no Ha Maru', '2020-11-04', '/chapters/naruto/naruto3.pdf', 3),
+(30, 2, 'Day of the Departure', '2020-11-04', '/chapters/hxh/hxh1.pdf', 1),
+(31, 2, 'In the Tempest', '2020-11-04', '/chapters/hxh/hxh2.pdf', 2),
+(32, 2, 'Final Choice', '2020-11-04', '/chapters/hxh/hxh3.pdf', 3),
+(33, 5, 'Chapter 0', '2020-11-04', '/chapters/mha/mha1.pdf', 1),
+(34, 5, 'Midoriya Izuku: The Origin', '2020-11-04', '/chapters/mha/mha2.pdf', 2),
+(35, 5, 'Roaring Muscle', '2020-11-04', '/chapters/mha/mha3.pdf', 3),
+(36, 4, 'Grace Field House', '2020-11-04', '/chapters/tpn/tpn1.pdf', 1),
+(37, 4, 'Exit', '2020-11-04', '/chapters/tpn/tpn2.pdf', 2),
+(38, 4, 'The Iron Lady', '2020-11-04', '/chapters/tpn/tpn3.pdf', 3);
 
 -- --------------------------------------------------------
 
@@ -131,7 +172,11 @@ CREATE TABLE `chapter_rating` (
 
 INSERT INTO `chapter_rating` (`chapter_id`, `email_id`, `rating`) VALUES
 (1, 'jayesh@gmail.com', 5.0),
-(2, 'jayesh@gmail.com', 4.5);
+(2, 'jayesh@gmail.com', 4.5),
+(5, 'jayesh@gmail.com', 4.5),
+(7, 'jayesh@gmail.com', 4.5),
+(4, 'jayesh@gmail.com', 5.0),
+(10, 'jayesh@gmail.com', 4.5);
 
 -- --------------------------------------------------------
 
@@ -156,7 +201,11 @@ INSERT INTO `favourites` (`email_id`, `manga_id`) VALUES
 ('nilesh.dbit@gmailcom', 2),
 ('deepak@gmail.com', 1),
 ('pk@gmail.com', 1),
-('pk@gmail.com', 2);
+('pk@gmail.com', 2),
+('jayesh@gmail.com', 1),
+('jayesh@gmail.com', 3),
+('jayesh@gmail.com', 2),
+('jayesh@gmail.com', 5);
 
 -- --------------------------------------------------------
 
@@ -186,7 +235,10 @@ INSERT INTO `manga` (`manga_id`, `title`, `number_of_chapters`, `author`, `ratin
 (2, 'Hunter x hunter', '300', 'Togashi', 5, 500, '2019-08-04', '2019-08-07', '/covers/hxh.jpeg', 'Gon Freecss is a young boy living on Whale Island. He learns from \"Hunter\" Kite, that his father, who he was told was dead, is still alive somewhere as a top \"Hunter,\" risking his life to seek unknown items, such as hidden treasures, curiosa, exotic living creatures, etc. Gon decides to become a professional Hunter and leaves the island. To become a Hunter, he must pass the Hunter Examination, where he meets and befriends three other applicants: Kurapika, Leorio and Killua. Can Gon pass this formidable hurdle, the Hunter Examination, to become \"the Best Hunter in the World\" and eventually meet his father?'),
 (3, 'Attack on Titan', '120', 'Hajime Isayama', 4, 600, '2018-10-09', '2019-08-01', '/covers/aot.jpeg', 'Humans are nearly exterminated by giant creatures called Titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest of titans. Flash forward to the present and the city has not seen a titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a colossal titan that appears out of thin air. As the smaller titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single titan and take revenge for all of mankind.'),
 (4, 'The Promised Neverland', '80', 'Kaiu Shirai', 4, 400, '2018-02-07', '2019-08-28', '/covers/tpn.jpeg', 'A group of the smartest kids at a seemingly perfect orphanage uncover its dark truth when they a break a rule to never leave the orphanage grounds. Once the truth is discovered, they begin to plan an escape to save all of the children.'),
-(5, 'My Hero Academia', '330', 'Kohei Horikoshi', 5, 800, '2017-03-01', '2019-08-20', '/covers/mha.jpeg', 'In a world populated with superhumans, the superhero-loving Izuku Midoriya is without power. However, after the Quirkless dreamer Izuku inherits the powers of the world\'s best superhero, All Might, his hopes of becoming the top hero are now possible. Once enrolled in the high school for heroes, U.A., Izuku soon discovers being a hero is much more complicated than it appears');
+(5, 'My Hero Academia', '330', 'Kohei Horikoshi', 5, 800, '2017-03-01', '2019-08-20', '/covers/mha.jpeg', 'In a world populated with superhumans, the superhero-loving Izuku Midoriya is without power. However, after the Quirkless dreamer Izuku inherits the powers of the world\'s best superhero, All Might, his hopes of becoming the top hero are now possible. Once enrolled in the high school for heroes, U.A., Izuku soon discovers being a hero is much more complicated than it appears'),
+(6, 'Detective Conan', '1024', 'Gosho Aoyama', 4, 700, '2020-11-04', '2020-11-04', '/covers/detective_conan.jpeg', 'Detective Conan is about a teenage detective named Shinichi Kudo, who is poisoned by an evil group called \"The Black Organization\". The poison was supposed to kill him. However, the poison instead turned him into a small child.'),
+(7, 'Demon Slayer', '205', 'Koyoharu Gotouge', 4, 500, '2020-11-04', '2020-11-04', '/covers/demon_slayer.jpeg', 'It follows Tanjiro Kamado, a young boy who becomes a demon slayer after his family is slaughtered and his younger sister Nezuko is turned into a demon.'),
+(8, 'Naruto', '700', 'Masashi Kishimoto', 4, 600, '2020-11-04', '2020-11-04', '/covers/naruto.jpeg', 'Naruto is a Japanese manga series written and illustrated by Masashi Kishimoto. It tells the story of Naruto Uzumaki, a young ninja who seeks recognition from his peers and dreams of becoming the Hokage, the leader of his village.');
 
 -- --------------------------------------------------------
 
@@ -541,7 +593,36 @@ INSERT INTO `recent` (`email_id`, `manga_id`, `at_time`) VALUES
 ('jayesh@gmail.com', 1, '2019-10-26 23:19:13'),
 ('jayesh@gmail.com', 1, '2019-10-26 23:30:58'),
 ('jayesh@gmail.com', 1, '2019-10-26 23:36:25'),
-('jayesh@gmail.com', 1, '2019-10-26 23:42:56');
+('jayesh@gmail.com', 1, '2019-10-26 23:42:56'),
+('jayesh@gmail.com', 1, '2019-10-30 19:50:39'),
+('jayesh@gmail.com', 1, '2019-10-30 19:59:29'),
+('jayesh@gmail.com', 1, '2019-10-30 20:00:37'),
+('jayesh@gmail.com', 1, '2019-10-30 20:03:04'),
+('jayesh@gmail.com', 1, '2019-10-30 20:03:27'),
+('jayesh@gmail.com', 1, '2019-10-30 20:19:35'),
+('jayesh@gmail.com', 1, '2019-10-30 20:30:31'),
+('jayesh@gmail.com', 3, '2019-10-30 20:32:33'),
+('jayesh@gmail.com', 1, '2019-10-30 20:34:46'),
+('jayesh@gmail.com', 3, '2019-10-30 20:39:13'),
+('jayesh@gmail.com', 1, '2019-10-30 20:39:16'),
+('jayesh@gmail.com', 1, '2019-10-30 20:51:17'),
+('jayesh@gmail.com', 1, '2019-10-30 21:04:40'),
+('jayesh@gmail.com', 1, '2019-10-30 21:12:37'),
+('jayesh@gmail.com', 1, '2019-10-30 21:14:45'),
+('jayesh@gmail.com', 1, '2019-10-31 06:55:41'),
+('jayesh@gmail.com', 1, '2019-10-31 06:56:28'),
+('jayesh@gmail.com', 1, '2019-10-31 07:02:23'),
+('jayesh@gmail.com', 1, '2019-10-31 07:12:30'),
+('jayesh@gmail.com', 1, '2019-10-31 07:15:23'),
+('jayesh@gmail.com', 1, '2019-10-31 07:18:48'),
+('jayesh@gmail.com', 1, '2019-10-31 08:55:17'),
+('jayesh@gmail.com', 1, '2019-10-31 09:01:52'),
+('jayesh@gmail.com', 3, '2019-10-31 09:09:20'),
+('jayesh@gmail.com', 2, '2019-10-31 09:29:38'),
+('jayesh@gmail.com', 1, '2019-10-31 12:15:05'),
+('jayesh@gmail.com', 5, '2019-10-31 12:15:12'),
+('jayesh@gmail.com', 1, '2019-10-31 12:15:26'),
+('jayesh@gmail.com', 2, '2019-10-31 12:19:22');
 
 -- --------------------------------------------------------
 
@@ -634,13 +715,13 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT for table `chapters`
 --
 ALTER TABLE `chapters`
-  MODIFY `chapter_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `chapter_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `manga`
 --
 ALTER TABLE `manga`
-  MODIFY `manga_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `manga_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
